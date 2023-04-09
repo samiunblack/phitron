@@ -6,7 +6,7 @@ int main()
     long a, b, c, d;
     cin >> a >> b >> c >> d;
 
-    long mult = (a % 10) * (b % 10) * (c % 10) * (d % 10);
+    long mult = (a % 100) * (b % 100) * (c % 100) * (d % 100);
 
     long reminder = mult % 100;
 
@@ -15,6 +15,12 @@ int main()
         cout << "00";
     }
     else {
-        cout << reminder;
+        if(reminder / 10 == 0)
+        {
+            cout << "0" << reminder;
+        }
+        else {
+            cout << reminder;
+        }
     }
 }
