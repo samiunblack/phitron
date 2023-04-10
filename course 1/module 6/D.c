@@ -5,12 +5,12 @@ int main() {
     while (scanf("%d", &c) != EOF) {
         if(c == 1999)
         {
-            printf("Correct");
+            printf("Correct\n");
             break;
         }
         else
         {
-            printf("Wrong");
+            printf("Wrong\n");
         }
     }
     return 0;
