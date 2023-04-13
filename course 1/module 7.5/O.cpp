@@ -15,7 +15,7 @@ int main()
         cout << "1";
     }
     else {
-        int arr[n] = {0, 1};
+        long long arr[n] = {0, 1};
         
         for(int i = 2; i < n; i++)
         {
