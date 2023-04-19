@@ -1,18 +1,13 @@
 #include <stdio.h>
 #include <string.h>
-#include <string>
-#include <iostream>
-using namespace std;
  
 int main() {
-    string s;
-    cin >> s;
-
     int freq[26] = {0};
 
-    for(int i = 0; i < s.size(); i++)
+    char c;
+    while(scanf("%c", &c) != EOF)
     {
-        freq[s[i] - 'a']++;
+        freq[c - 'a']++;
     }
 
     for(int i = 0; i < 26; i++)
