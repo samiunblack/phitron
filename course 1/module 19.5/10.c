@@ -7,7 +7,7 @@ int main() {
     int arr[n];
     int even = 0;
     int odd = 0;
-    int div_3 = 0;
+    int div_3_5 = 0;
     for(int i = 0; i < n; i++)
     {
         scanf("%d", &arr[i]);
@@ -19,9 +19,9 @@ int main() {
         {
             odd++;
         }
-        if(arr[i] % 3 == 0)
+        if(arr[i] % 3 == 0 && arr[i] % 5)
         {
-            div_3++;
+            div_3_5++;
         }
 
     }
