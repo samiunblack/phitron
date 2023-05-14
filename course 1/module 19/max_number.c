@@ -1,14 +1,15 @@
 #include <stdio.h>
 #include <limits.h>
 
-int find_max(int *arr, int n, int i, int max)
+int find_max(int *arr, int n, int i)
 {
-    if(i == n) return max;
+    if(i == n) return INT_MIN;
+    int max = find_max(arr, n, i + 1);
     if(arr[i] > max)
     {
-        max = arr[i];
+        return arr[i];
     }
-    return find_max(arr, n, i + 1, max);
+    return max;
 } 
 
 int main() {
@@ -20,8 +21,7 @@ int main() {
     {
         scanf("%d", &arr[i]);
     }
-    int max = INT_MIN;
-    printf("%d", find_max(arr, n, 0, max));
+    printf("%d", find_max(arr, n, 0));
 
     return 0;
 }
