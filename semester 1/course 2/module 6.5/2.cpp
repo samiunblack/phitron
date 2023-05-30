@@ -13,15 +13,7 @@ int main()
 
     while(ss >> word)
     {
-        int j = 0;
-        int i = word.size() - 1;
-        while(j < i)
-        {
-            swap(word[i], word[j]);
-            j++;
-            i--;
-        }
-
+        reverse(word.begin(), word.end());
         sr += word;
         sr += " ";
     }
