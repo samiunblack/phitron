@@ -47,8 +47,6 @@
     </ul>
 </details>
 
-<br>
-
 ## Course 2: C++ for DSA
 <details>
 <summary>Week 1: Basic Operators and OOP</summary>
