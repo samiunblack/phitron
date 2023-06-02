@@ -4,9 +4,9 @@ using namespace std;
 int main()
 {
     string s;
-    string x;
 
     getline(cin, s);
+    string x;
     cin >> x;
 
     stringstream ss(s);
