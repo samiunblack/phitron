@@ -65,3 +65,58 @@
         <li>Array of Objects</li>
     </ul>
 </details>
+
+## Course 3: Basic Data Structures
+<details>
+<summary>Week 1: Time Complexity and Binary Search</summary>
+    <ul>
+        <li>Time Complexsity</li>
+        <li>STL Vector</li>
+        <li>Prefix Sum and Binary Search</li>
+    </ul>
+</details>
+
+<details>
+<summary>Week 2: Linked List</summary>
+    <ul>
+        <li>Singly Linked List</li>
+        <li>Operations on Singly Linked List</li>
+        <li>Double Linked List and Operations</li>
+    </ul>
+</details>
+
+<details>
+<summary>Week 3: Linked List and Stack</summary>
+    <ul>
+        <li>STL List and Cycle Detection</li>
+        <li>Linked List related problem solving</li>
+        <li>Stack Implementation</li>
+    </ul>
+</details>
+
+<details>
+<summary>Week 4: Stack and Queue</summary>
+    <ul>
+        <li>Queue Implementation</li>
+        <li>STL Stack and Queue</li>
+        <li>Stack and Queue related problem solving</li>
+    </ul>
+</details>
+
+<details>
+<summary>Week 5: Binary Tree</summary>
+    <ul>
+        <li>Binary Tree Implementation</li>
+        <li>Binary Tree Operations</li>
+        <li>Binary Tree related problem solving</li>
+    </ul>
+</details>
+
+<details>
+<summary>Week 6: BST and Heap</summary>
+    <ul>
+        <li>BST Implementation</li>
+        <li>Heap Implementation</li>
+        <li>STL Priority Queue and MapSTL Priority Queue and Map</li>
+    </ul>
+</details>
