@@ -1,0 +1,34 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+class Node
+{
+    public:
+        int val;
+        Node* next;
+    
+        Node(int val, Node* next = NULL)
+        {
+            this->val = val;
+            this->next = next;
+        }
+};
+
+void insert_at_tail(Node* &head, int val)
+{
+    Node* node = new Node(val);
+    
+    if(head == NULL)
+    {
+        head = node;
+        return;
+    }
+
+    Node* tail = head;
+    while(tail->next != NULL)
+    {
+        tail = tail->next;
+    }
+
+    tail->next = node;
+}
