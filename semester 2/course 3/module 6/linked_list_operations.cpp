@@ -187,7 +187,6 @@ int main()
         {
             delete_head(head);
         }
-
         print_linked_list(head);
     }
 }
