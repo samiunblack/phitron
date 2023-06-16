@@ -48,6 +48,7 @@
 </details>
 
 ## Course 2: C++ for DSA
+
 <details>
 <summary>Week 1: Basic Operators and OOP</summary>
     <ul>
@@ -67,6 +68,7 @@
 </details>
 
 ## Course 3: Basic Data Structures
+
 <details>
 <summary>Week 1: Time Complexity and Binary Search</summary>
     <ul>
@@ -81,7 +83,7 @@
     <ul>
         <li>Singly Linked List</li>
         <li>Operations on Singly Linked List</li>
-        <li>Double Linked List and Operations</li>
+        <li>Singly Linked List Recap</li>
     </ul>
 </details>
 
