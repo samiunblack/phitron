@@ -27,6 +27,52 @@ void print_list_reversed(Node* head)
     
 }
 
+void reverse(Node* &head)
+{
+    Node* prev = NULL;
+    Node* curr = head;
+    Node* next = curr->next;
+
+    while(next != NULL)
+    {
+        curr->next = prev;
+        prev = curr;
+        curr = next;
+        next = curr->next;
+    }
+    
+    curr->next = prev;
+    head = curr;
+}
+
+void reverse_recursive(Node* curr, Node* prev, Node* next, Node* &head)
+{
+    if(next == NULL)
+    {
+        curr->next = prev;
+        head = curr;
+        return;
+    }
+
+    curr->next = prev;
+    prev = curr;
+    curr = next;
+    next = curr->next;
+    reverse_recursive(curr, prev, next, head);
+}
+
+void print_list(Node* head)
+{
+    Node* tmp = head;
+
+    while(tmp != NULL)
+    {
+        cout << tmp->val << " ";
+        tmp = tmp->next;
+    }
+    cout << endl;
+}
+
 int main()
 {
     Node* head = new Node(10);
@@ -40,5 +86,10 @@ int main()
     b->next = c;
     c->next = tail; 
 
-    print_list_reversed(head);
+    Node* prev = NULL;
+    Node* curr = head;
+    Node* next = curr->next;
+
+    reverse_recursive(curr, prev, next, head);
+    print_list(head);
 }
