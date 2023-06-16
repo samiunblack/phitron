@@ -45,20 +45,17 @@ void reverse(Node* &head)
     head = curr;
 }
 
-void reverse_recursive(Node* curr, Node* prev, Node* next, Node* &head)
+Node* reverse_recursive(Node* &head, Node* curr, Node* node)
 {
-    if(next == NULL)
+    if(curr->next == NULL)
     {
-        curr->next = prev;
         head = curr;
-        return;
+        return head;
     }
 
-    curr->next = prev;
-    prev = curr;
-    curr = next;
-    next = curr->next;
-    reverse_recursive(curr, prev, next, head);
+    node = reverse_recursive(head, curr->next, node);
+    node->next = curr;
+    curr->next = NULL;
 }
 
 void print_list(Node* head)
@@ -90,6 +87,6 @@ int main()
     Node* curr = head;
     Node* next = curr->next;
 
-    reverse_recursive(curr, prev, next, head);
+    reverse_recursive(head, head, NULL);
     print_list(head);
 }
