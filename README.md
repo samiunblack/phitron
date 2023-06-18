@@ -79,7 +79,7 @@
 </details>
 
 <details>
-<summary>Week 2: Linked List</summary>
+<summary>Week 2: Singly Linked List</summary>
     <ul>
         <li>Singly Linked List</li>
         <li>Operations on Singly Linked List</li>
@@ -88,11 +88,11 @@
 </details>
 
 <details>
-<summary>Week 3: Linked List and Stack</summary>
+<summary>Week 3: Doubly Linked List</summary>
     <ul>
+        <li>Doubly Linked List</li>
         <li>STL List and Cycle Detection</li>
         <li>Linked List related problem solving</li>
-        <li>Stack Implementation</li>
     </ul>
 </details>
 
