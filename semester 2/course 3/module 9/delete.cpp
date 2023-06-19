@@ -74,7 +74,11 @@ void delete_head(Node* &head, Node* &tail)
     Node* to_delete = head;
 
     head = head->next;
-    head->prev = NULL;
+    if(head != NULL)
+    {
+        head->prev = NULL;
+    }
+    
 
     delete to_delete;
 }
