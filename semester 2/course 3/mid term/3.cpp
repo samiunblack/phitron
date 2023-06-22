@@ -14,45 +14,6 @@ class Node
         }
 };
 
-int size(Node* head)
-{
-    Node* tmp = head;
-    int count = 0;
-    while(tmp != NULL)
-    {
-        count++;
-        tmp = tmp->next;
-    }
-    
-    return count;
-}
-
-void print_list(Node* head)
-{
-    Node* tmp = head;
-
-    while(tmp != NULL)
-    {
-        cout << tmp->val << " ";
-        tmp = tmp->next;
-    }
-    cout << endl;
-}
-
-void sort(Node* head)
-{
-    Node* tmp = head;
-    for(auto i = tmp; i != NULL; i = i->next)
-    {
-        for(auto j = i->next; j != NULL; j = j->next)
-        {
-            if(i->val > j->val)
-            {
-                swap(i->val, j->val);
-            }
-        }
-    }   
-}
 
 void insert_tail(Node* &head, Node* &tail, int val)
 {
