@@ -1,1 +1,0 @@
-{"name":"Local: 5","url":"f:\\phitron\\course 1\\assignment 2\\5.c","tests":[{"id":1681464999468,"input":"5\n10 20 30 40 50\n1 100","output":"50 40 30 100 10 "},{"id":1681465071261,"input":"5\n10 20 30 40 50\n4 10","output":"10 40 30 20 10"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"f:\\phitron\\course 1\\assignment 2\\5.c","group":"local","local":true}
