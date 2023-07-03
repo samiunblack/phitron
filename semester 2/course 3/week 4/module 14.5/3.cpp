@@ -16,18 +16,11 @@ int main()
     }
 
     stack<int> st2;
-    queue<int> que;
 
     while(!st.empty())
     {
-        que.push(st.top());
+        st2.push(st.top());
         st.pop();
-    }
-
-    while(!que.empty())
-    {
-        st2.push(que.front());
-        que.pop();
     }
 
     while(!st2.empty())
