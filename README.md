@@ -119,6 +119,6 @@
     <ul>
         <li>BST Implementation</li>
         <li>Heap Implementation</li>
-        <li>STL Priority Queue and MapSTL Priority Queue and Map</li>
+        <li>STL Priority Queue and Map</li>
     </ul>
 </details>
