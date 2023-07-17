@@ -122,3 +122,60 @@
         <li>STL Priority Queue and Map</li>
     </ul>
 </details>
+
+
+## Course 4: Algorithms
+
+<details>
+<summary>Week 1: Recursion and Time Complexity</summary>
+    <ul>
+        <li>Graph Presentation</li>
+        <li>BFS</li>
+        <li>DFS & Cycle Presentation</li>
+    </ul>
+</details>
+
+<details>
+<summary>Week 2: Graph (Dijkstra + Extra)</summary>
+    <ul>
+        <li>Dijkstra Algorithm</li>
+        <li>Bellman Ford Algorithm</li>
+        <li>Floyd Warshall Algorithm</li>
+    </ul>
+</details>
+
+<details>
+<summary>Week 3: Dynamic Programming Classic</summary>
+    <ul>
+        <li>Fibonacci Series</li>
+        <li>0-1 Knapsack</li>
+        <li>Unbounded Knapsack</li>
+    </ul>
+</details>
+
+<details>
+<summary>Week 4: Dynamic Programming Variations</summary>
+    <ul>
+        <li>Knapsack Variations</li>
+        <li>Coin Change DP</li>
+        <li>LCS</li>
+    </ul>
+</details>
+
+<details>
+<summary>More Variations</summary>
+    <ul>
+        <li>Unbounded Knapsack Variations</li>
+        <li>LCS Variations</li>
+        <li>Hashing</li>
+    </ul>
+</details>
+
+<details>
+<summary>Week 6: Backtracking and Greedy</summary>
+    <ul>
+        <li>Backtracking</li>
+        <li>Greedy Approach</li>
+        <li>Minimum Spanning Tree</li>
+    </ul>
+</details>
