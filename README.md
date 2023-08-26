@@ -127,25 +127,34 @@
 ## Course 4: Algorithms
 
 <details>
-<summary>Week 1: Recursion and Time Complexity</summary>
+<summary>Week 1: Introduction to Algorithm</summary>
     <ul>
-        <li>Graph Presentation</li>
+        <li>Algorithm Analysis</li>
+        <li>Asymptotic Notation</li>
+        <li>Divide and Conquer</li>
+    </ul>
+</details>
+
+<details>
+<summary>Week 2: Graph</summary>
+    <ul>
+        <li>Representation</li>
         <li>BFS</li>
-        <li>DFS & Cycle Presentation</li>
+        <li>DFS</li>
     </ul>
 </details>
 
 <details>
-<summary>Week 2: Graph (Dijkstra + Extra)</summary>
+<summary>Week 3: Shortest Path</summary>
     <ul>
-        <li>Dijkstra Algorithm</li>
-        <li>Bellman Ford Algorithm</li>
-        <li>Floyd Warshall Algorithm</li>
+        <li>Dijkstra</li>
+        <li>Bellman Ford</li>
+        <li>Floyd Warshall</li>
     </ul>
 </details>
 
 <details>
-<summary>Week 3: Dynamic Programming Classic</summary>
+<summary>Week 4: Dynamic Programming Classic</summary>
     <ul>
         <li>Fibonacci Series</li>
         <li>0-1 Knapsack</li>
@@ -154,20 +163,11 @@
 </details>
 
 <details>
-<summary>Week 4: Dynamic Programming Variations</summary>
+<summary>Week 5: Dynamic Programming Variations</summary>
     <ul>
         <li>Knapsack Variations</li>
         <li>Coin Change DP</li>
         <li>LCS</li>
-    </ul>
-</details>
-
-<details>
-<summary>More Variations</summary>
-    <ul>
-        <li>Unbounded Knapsack Variations</li>
-        <li>LCS Variations</li>
-        <li>Hashing</li>
     </ul>
 </details>
 
