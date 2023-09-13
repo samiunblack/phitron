@@ -4,7 +4,7 @@ using namespace std;
 const int N = 1e5 + 5;
 int parent[N];
 int parentSize[N];
-vector<pair<int, int>> cycle;
+bool cycle = false;
 
 void reset()
 {
@@ -13,6 +13,8 @@ void reset()
         parent[i] = -1;
         parentSize[i] = 1;
     }
+
+    cycle = false;
 }
 
 int dsu_find(int n)
@@ -45,30 +47,8 @@ void dsu_union(int a, int b)
     }
     else
     {
-       cycle.push_back({a, b}); 
+        cycle = true;
     }
-}
-
-vector<pair<int, int>> setRoad(int n)
-{
-    vector<int> leader;
-
-    for(int i = 1; i <= n; i++)
-    {
-        if(parent[i] == -1)
-        {
-            leader.push_back(i);
-        }
-    }
-
-    vector<pair<int, int>> ans;
-
-    for(int i = 1; i < leader.size(); i++)
-    {
-        ans.push_back({leader[0], leader[i]});
-    }
-
-    return ans;
 }
 
 int main()
@@ -77,7 +57,6 @@ int main()
 
     int n, m;
     cin >> n >> m;
-    
 
     while(m--)
     {
@@ -86,8 +65,12 @@ int main()
         dsu_union(a, b);
     }
 
-    vector<pair<int, int>> leader = setRoad(n);
-
-    cout << cycle.size() << endl;
-
+    if(cycle == true)
+    {
+        cout << "Cycle Detected";
+    }
+    else
+    {
+        cout << "No Cycle Detected";
+    }
 }   

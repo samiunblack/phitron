@@ -39,6 +39,27 @@ void bellman_ford(int src)
 	}
 }
 
+void neg_cycle()
+{
+	bool cycle = false;
+
+	for(int u = 1; u <= n; u++)
+	{
+		for(pii vpair: g[u])
+		{
+			int v = vpair.first;
+			int w = vpair.second;
+
+			if(dist[u] != INF && dist[v] > dist[u] + w)
+			{
+				cycle = true;
+				break;
+			}
+		}
+	}
+	
+}
+
 int main()
 {
     cin >> n >> m >> src;
@@ -57,7 +78,5 @@ int main()
     {
     	cout << dist[i] << " ";
     }
-    
- 	return 0;
     
 }
