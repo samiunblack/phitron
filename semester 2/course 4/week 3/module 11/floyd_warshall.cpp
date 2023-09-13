@@ -1,63 +1,45 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+const int N = 1e3 + 7;
+const int INF = 1e9 + 5;
+int d[N][N];
 
-const int N = 1e3 + 5;
-const int INF = 1e9 + 9;
-
-vector<int> adj[N];
-int dist[N][N];
-int n, m;
-
-void init_dist()
+void dist_init(int n)
 {
     for(int i = 1; i <= n; i++)
     {
         for(int j = 1; j <= n; j++)
         {
-            if(i != j)
-            dist[i][j] = INF;
+            if(i == j) d[i][j] = 0;
+            else d[i][j] = INF;
         }
-    }
-}
-
-void print_matrix()
-{
-    for(int i = 1; i <= n; i++)
-    {
-        for(int j = 1; j <= n; j++)
-        {
-            if(dist[i][j] == INF) cout << "X" << " ";
-            else cout << dist[i][j] << " ";
-        }
-
-        cout << endl;
     }
 }
 
 int main()
 {
+    int n, m;
     cin >> n >> m;
-    init_dist();
+
+    dist_init(n);
 
     for(int i = 0; i < m; i++)
     {
         int u, v, w;
         cin >> u >> v >> w;
-        dist[u][v] = w;
-    }    
 
-    //floyd warshall
+        d[u][v] = w;
+    }
+
     for(int k = 1; k <= n; k++)
     {
         for(int i = 1; i <= n; i++)
         {
             for(int j = 1; j <= n; j++)
             {
-                dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j]);
+                d[i][j] = min(d[i][j], d[i][k] + d[k][j]);
             }
         }
     }
-
-    print_matrix();
 }
