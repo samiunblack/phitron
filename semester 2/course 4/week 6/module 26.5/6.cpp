@@ -22,6 +22,8 @@ int main()
         }
     }
 
+    int mx = INT_MIN;
+
     for(int i = 1; i <= n; i++)
     {
         for(int j = 1; j <= m; j++)
@@ -32,36 +34,12 @@ int main()
             }
             else
             {
-                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);
+                dp[i][j] = 0;
             }
+
+            mx = max(dp[i][j], mx);
         }
     }
 
-    string ans;
-
-    int i = n, j = m;
-
-    while(i != 0 && j != 0)
-    {
-        if (a[i - 1] == b[j - 1])
-        {
-            ans += a[i - 1];
-            i--;
-            j--;
-        }
-        else
-        {
-            if (dp[i][j - 1] > dp[i - 1][j])
-            {
-                j--;
-            }
-            else
-            {
-                i--;
-            }
-        }
-    }
-
-    reverse(ans.begin(), ans.end());
-    cout << ans;
+    cout << mx;
 }

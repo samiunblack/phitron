@@ -51,16 +51,17 @@ int main()
     int i = si, j = sj;
     string ans;
 
-    while(i >= 1)
+    while (i != 0 && j != 0)
     {
-        while(j >= 1)
+        if (a[i - 1] == b[j - 1])
         {
-            if(a[i - 1] == b[j - 1])
-            {
-                ans.push_back(a[i - 1]);
-            }
+            ans += a[i - 1];
             i--;
             j--;
+        }
+        else
+        {
+            break;
         }
     }
 
