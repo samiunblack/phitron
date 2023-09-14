@@ -1,42 +1,38 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int dp[1005][1005];
-
-int solve(int n, string a, int m, string b)
-{
-    if(n == 0 || m == 0) return 0;
-
-    if(dp[n][m] != -1) return dp[n][m];
-
-    if(a[n - 1] == b[m - 1])
-    {
-        return dp[n][m] = solve(n - 1, a, m - 1, b) + 1;
-    }
-
-    else
-    {
-        int op1 = solve(n - 1, a, m, b);
-        int op2 = solve(n, a, m - 1, b);
-
-        return dp[n][m] = max(op1, op2);
-    }
-}
-
 int main()
 {
-    string a, b;
-    cin >> a >> b;
+    int t;
+    cin >> t;
 
-    for(int i = 0; i <= a.size(); i++)
+    while(t--)
     {
-        for(int j = 0; j <= b.size(); j++)
+        string a, b;
+        cin >> a >> b;
+
+        int n = a.size();
+        int m = b.size();
+
+        int dp[n + 1][m + 1];
+
+        for (int i = 0; i <= n; i++)
         {
-            dp[i][j] = -1;
+            for (int j = 0; j <= m; j++)
+            {
+                if (i == 0 || j == 0) dp[i][j] = 0;
+            }
         }
+
+        for (int i = 1; i <= n; i++)
+        {
+            for (int j = 1; j <= m; j++)
+            {
+                if (a[i - 1] == b[j - 1]) dp[i][j] = dp[i - 1][j - 1] + 1;
+                else dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);
+            }
+        }
+        
+        cout << n + m - dp[n][m] << endl;
     }
-
-    int ans = solve(a.size(), a, b.size(), b);
-
-    cout << (a.size() + b.size()) - ans;
 }
