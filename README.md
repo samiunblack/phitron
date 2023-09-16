@@ -154,28 +154,28 @@
 </details>
 
 <details>
-<summary>Week 4: Dynamic Programming Classic</summary>
+<summary>Week 4: Graph Variations</summary>
+    <ul>
+        <li>Disjoint Set</li>
+        <li>Minimum Spanning Tree</li>
+        <li>Bellman Ford and Floyd Warshall</li>
+    </ul>
+</details>
+
+<details>
+<summary>Week 5: Dynamic Programming Classic</summary>
     <ul>
         <li>Fibonacci Series</li>
         <li>0-1 Knapsack</li>
+        <li>0-1 Knapsack Variations</li>
+    </ul>
+</details>
+
+<details>
+<summary>Week 6: Dynamic Programming Variations</summary>
+    <ul>
         <li>Unbounded Knapsack</li>
-    </ul>
-</details>
-
-<details>
-<summary>Week 5: Dynamic Programming Variations</summary>
-    <ul>
-        <li>Knapsack Variations</li>
-        <li>Coin Change DP</li>
         <li>LCS</li>
-    </ul>
-</details>
-
-<details>
-<summary>Week 6: Backtracking and Greedy</summary>
-    <ul>
-        <li>Backtracking</li>
-        <li>Greedy Approach</li>
-        <li>Minimum Spanning Tree</li>
+        <li>LCS Variations</li>
     </ul>
 </details>
