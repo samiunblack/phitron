@@ -1,6 +1,6 @@
 # Phitron
 
-## Course 1: Introduction to Programming Language & Problem Solving Part-I
+## Course 1: Introduction to Programming Language
 
 <details>
 <summary>Week 1: Basic Syntax, Condition & Loop</summary>
@@ -177,5 +177,54 @@
         <li>Unbounded Knapsack</li>
         <li>LCS</li>
         <li>LCS Variations</li>
+    </ul>
+</details>
+
+## Course 5: Python and OOP
+
+<details>
+<summary>Week 1: Introduction to Python</summary>
+    <ul>
+        <li>Intro to Python</li>
+        <li>Basic Python 1</li>
+        <li>Basic Python 2</li>
+    </ul>
+</details>
+
+<details>
+<summary>Week 2: OOP</summary>
+    <ul>
+        <li>Class and Object</li>
+        <li>Python OOP</li>
+        <li>OOP More</li>
+    </ul>
+</details>
+
+<details>
+<summary>Week 3: OOP Project</summary>
+    <ul>
+        <li>Ride Sharing</li>
+        <li>Restaurant Project</li>
+        <li>School Management</li>
+    </ul>
+</details>
+
+## Course 6: Database Management
+
+<details>
+<summary>Week 1: Introduction to Database</summary>
+    <ul>
+        <li>Intro to Database</li>
+        <li>MYSQL and Basic Query</li>
+        <li>Table Query</li>
+    </ul>
+</details>
+
+<details>
+<summary>Week 2: Deep Dive into Database</summary>
+    <ul>
+        <li>Functions</li>
+        <li>Subquery</li>
+        <li>Join</li>
     </ul>
 </details>
