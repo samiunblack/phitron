@@ -228,3 +228,13 @@
         <li>Join</li>
     </ul>
 </details>
+
+## Course 7: SWE Projects
+<details>
+<summary>Week 1: HTML, CSS, CSS Framework</summary>
+<ul>
+    <li>HTML</li>
+    <li>CSS</li>
+    <li>Bootstrap</li>
+</ul>
+</details>
