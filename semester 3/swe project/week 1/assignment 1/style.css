@@ -1,0 +1,24 @@
+.carousal-container
+{
+    background-image: url('images/hero_background.png');
+}
+
+.carousel-section
+{
+    height: 700px;
+}
+
+@media only screen and (max-width: 480px) {
+    .carousel-section
+    {
+        height: 500px !important;
+    }
+}
+
+@media only screen and (min-width: 560px)
+{
+    .laptop-container
+    {
+        margin-right: -300px;
+    }
+}

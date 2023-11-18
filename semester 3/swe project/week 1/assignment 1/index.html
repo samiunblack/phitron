@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <link href="/dist/output.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body class="overflow-x-hidden">
+    <header>
+      <nav class="bg-indigo-700">
+        <div
+          class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4"
+        >
+          <div class="flex items-center space-x-3 rtl:space-x-reverse">
+            <img src="images/logo.png" class="h-8" alt="Flowbite Logo" />
+            <div
+              class="bg-white w-80 px-4 py-3 rounded hidden md:block xl:block 2xl:block lg:block"
+            >
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input type="text" placeholder="search" style="outline: 0" />
+            </div>
+          </div>
+
+          <button
+            id="burger-menu"
+            data-collapse-toggle="navbar-default"
+            type="button"
+            class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+            aria-controls="navbar-default"
+            aria-expanded="false"
+          >
+            <span class="sr-only">Open main menu</span>
+            <svg
+              class="w-5 h-5"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 17 14"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M1 1h15M1 7h15M1 13h15"
+              />
+            </svg>
+          </button>
+          <div
+            class="hidden w-full md:block md:w-auto lg:flex"
+            id="navbar-default"
+          >
+            <ul
+              class="font-medium flex flex-col p-4 md:p-0 mt-4 border rounded-lg md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-indigo-700"
+            >
+              <li>
+                <a
+                  href="#"
+                  class="block py-2 px-3 text-white rounded md:bg-transparent md:text-white md:p-0"
+                  aria-current="page"
+                  >Home</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="block py-2 px-3 text-gray-400 rounded md:border-0 md:p-0"
+                  >About</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="block py-2 px-3 text-gray-400 rounded md:border-0 md:p-0"
+                  >Contact Us</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="block py-2 px-3 text-white rounded md:border-0 md:p-0"
+                  ><i class="fa-solid fa-cart-shopping"></i
+                ></a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="block py-2 px-3 text-white rounded md:border-0 md:p-0"
+                  ><i class="fa-solid fa-user"></i
+                ></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <section class="overflow-hidden">
+        <div
+          id="default-carousel"
+          class="relative w-full carousal-container bg-cover overflow-hidden carousel-section"
+          data-carousel="slide"
+        >
+          <!-- Carousel wrapper -->
+          <div class="relative rounded-lg">
+            <!-- Item 1 -->
+            <div class="hidden duration-700 ease-in-out" data-carousel-item>
+              <div class="flex flex-wrap justify-around h-full w-screen">
+                <div
+                  class="md:pt-56 lg:pt-56 xl:pt-56 pt-4 text-center md:text-left lg:text-left xl:text-left"
+                >
+                  <small class="text-lg font-light text-indigo-500"
+                    >Pro. Beyond</small
+                  >
+                  <h1 class="text-4xl md:text-8xl xl:text-8xl lg:text-8xl">
+                    IPhone <span class="font-medium">14 Pro</span>
+                  </h1>
+                  <p class="mt-2">
+                    Created to change everything for the better. For everyone
+                  </p>
+                  <button
+                    class="mt-4 bg-indigo-800 text-white font-medium px-6 py-2 rounded-md hidden md:block lg:block xl:block"
+                  >
+                    Shop Now
+                  </button>
+                </div>
+                <img
+                  src="images/hero_phone.png"
+                  alt="phone image"
+                  class="inline-block pt-20 w-1/2 md:w-fit xl:w-fit lg:w-fit"
+                />
+              </div>
+            </div>
+            <!-- Item 2 -->
+            <div class="hidden duration-700 ease-in-out" data-carousel-item>
+              <div class="flex flex-wrap justify-around h-full w-screen">
+                <div
+                  class="md:pt-56 lg:pt-56 xl:pt-56 text-center pt-4 md:text-left lg:text-left xl:text-left"
+                >
+                  <small class="text-lg font-light text-indigo-500"
+                    >Pro. Beyond</small
+                  >
+                  <h1 class="text-4xl md:text-8xl xl:text-8xl lg:text-8xl">
+                    IPhone <span class="font-medium">13 </span>
+                  </h1>
+                  <p class="mt-2">Created to reach your imagination.</p>
+                  <button
+                    class="mt-4 bg-indigo-800 text-white font-medium px-6 py-2 rounded-md hidden md:block lg:block xl:block"
+                  >
+                    Shop Now
+                  </button>
+                </div>
+                <img
+                  src="images/iphone_13.png"
+                  alt="phone image"
+                  class="inline-block pt-20 w-1/2"
+                />
+              </div>
+            </div>
+          </div>
+          <!-- Slider indicators -->
+          <div
+            class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse"
+          >
+            <button
+              type="button"
+              class="w-3 h-3 rounded-full"
+              aria-current="true"
+              aria-label="Slide 1"
+              data-carousel-slide-to="0"
+            ></button>
+            <button
+              type="button"
+              class="w-3 h-3 rounded-full"
+              aria-current="false"
+              aria-label="Slide 2"
+              data-carousel-slide-to="1"
+            ></button>
+            <button
+              type="button"
+              class="w-3 h-3 rounded-full"
+              aria-current="false"
+              aria-label="Slide 3"
+              data-carousel-slide-to="2"
+            ></button>
+            <button
+              type="button"
+              class="w-3 h-3 rounded-full"
+              aria-current="false"
+              aria-label="Slide 4"
+              data-carousel-slide-to="3"
+            ></button>
+            <button
+              type="button"
+              class="w-3 h-3 rounded-full"
+              aria-current="false"
+              aria-label="Slide 5"
+              data-carousel-slide-to="4"
+            ></button>
+          </div>
+          <!-- Slider controls -->
+          <button
+            type="button"
+            class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+            data-carousel-prev
+          >
+            <span
+              class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none"
+            >
+              <svg
+                class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 6 10"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 1 1 5l4 4"
+                />
+              </svg>
+              <span class="sr-only">Previous</span>
+            </span>
+          </button>
+          <button
+            type="button"
+            class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+            data-carousel-next
+          >
+            <span
+              class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none"
+            >
+              <svg
+                class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 6 10"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="m1 9 4-4-4-4"
+                />
+              </svg>
+              <span class="sr-only">Next</span>
+            </span>
+          </button>
+        </div>
+      </section>
+    </header>
+    <main>
+      <div class="grid md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2">
+        <div>
+          <div class="flex items-center p-10">
+            <img
+              src="images/ipad.png"
+              alt="tab image"
+              class="w-1/2 object-contain"
+            />
+            <div>
+              <h2 class="md:text-6xl lg:text-6xl xl:text-6xl text-3xl">
+                iPad 9
+              </h2>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud.
+              </p>
+            </div>
+          </div>
+          <div class="bg-blue-100 flex items-center p-2">
+            <img
+              src="images/headphone.png"
+              alt="Apple Airpod max"
+              class="w-1/2 object-contain"
+              style="margin-left: -100px; height: 300px"
+            />
+            <div class="ml-4">
+              <h2 class="md:text-5xl lg:text-5xl xl:text-5xl text-3xl">
+                <span class="font-light">Apple Airpods</span> Max
+              </h2>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              </p>
+            </div>
+          </div>
+        </div>
+        <div
+          class="bg-gray-200 flex flex-wrap md:flex-nowrap lg:flex-nowrap xl:flex-nowrap md:items-center xl:md-items-center lg:md-items-center p-10"
+        >
+          <div class="mb-3">
+            <h2 class="text-6xl">
+              <span class="font-thin">Macbook </span><br />Air
+            </h2>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad
+            </p>
+            <button class="mt-2 bg-indigo-600 text-white px-8 py-2 rounded-md">
+              Shop Now
+            </button>
+          </div>
+          <img
+            src="images/macbook.png"
+            alt="Macbook Air"
+            class="w-3/4 object-contain laptop-container"
+          />
+        </div>
+      </div>
+      <div
+        class="bg-slate-100 flex flex-col items-center pl-5 pt-5 pb-5 md:p-20 lg:p-20 xl:p-20"
+      >
+        <div>
+          <h1 class="text-2xl font-medium">Browse By Category</h1>
+          <div class="flex flex-wrap gap-5 mt-10">
+            <div
+              class="bg-gray-300 w-40 h-40 rounded-lg flex flex-col items-center justify-center"
+            >
+              <i class="fa-solid fa-mobile" style="font-size: 30px"></i>
+              <p>Phones</p>
+            </div>
+            <div
+              class="bg-gray-300 w-40 h-40 rounded-lg flex flex-col items-center justify-center"
+            >
+              <i class="fa-solid fa-clock" style="font-size: 30px"></i>
+              <p>Smart Watches</p>
+            </div>
+            <div
+              class="bg-gray-300 w-40 h-40 rounded-lg flex flex-col items-center justify-center"
+            >
+              <i class="fa-solid fa-camera" style="font-size: 30px"></i>
+              <p>Cameras</p>
+            </div>
+            <div
+              class="bg-gray-300 w-40 h-40 rounded-lg flex flex-col items-center justify-center"
+            >
+              <i class="fa-solid fa-headphones" style="font-size: 30px"></i>
+              <p>Headphones</p>
+            </div>
+            <div
+              class="bg-gray-300 w-40 h-40 rounded-lg flex flex-col items-center justify-center"
+            >
+              <i class="fa-solid fa-desktop" style="font-size: 30px"></i>
+              <p>Computers</p>
+            </div>
+            <div
+              class="bg-gray-300 w-40 h-40 rounded-lg flex flex-col items-center justify-center"
+            >
+              <i class="fa-solid fa-gamepad" style="font-size: 30px"></i>
+              <p>Gaming</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col items-center mb-10">
+        <div>
+          <div
+            class="flex md:gap-5 gap-2 lg:gap-5 xl:gap-5 md:m-10 lg:m-10 xl:m-10 mt-3 ml-3"
+          >
+            <div class="font-medium border-b-2 border-black">New Arrival</div>
+            <div class="text-gray-400">Bestsellar</div>
+            <div class="text-gray-400">Featured Products</div>
+          </div>
+          <div
+            class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 xl:grid-cosl-4 gap-5 md:m-10 lg:m-10 xl:m-10 mt-3 ml-3"
+          >
+            <div
+              class="w-40 md:w-48 xl:w-48 lg:w-48 bg-gray-200 p-5 flex flex-col items-center text-center gap-3 rounded"
+            >
+              <img
+                src="images/iphone_13.png"
+                alt="iphone 14"
+                class="inline-block w-9/12"
+              />
+              <div style="height: 130px">
+                <h4 class="font-medium">
+                  Apple iPhone 14 Pro Max 128GB Deep Purple (MQ9T3RX/A)
+                </h4>
+                <h4 class="font-bold">$900</h4>
+              </div>
+              <button class="bg-black text-white px-7 py-2 rounded">
+                Buy Now
+              </button>
+            </div>
+            <div
+              class="w-40 md:w-48 xl:w-48 lg:w-48 bg-gray-200 p-5 flex flex-col items-center text-center gap-3 rounded"
+            >
+              <img
+                src="images/camera.png"
+                alt="camera"
+                class="inline-block w-9/12"
+              />
+              <div style="height: 130px">
+                <h4 class="font-medium">Blackmagic Pocket Cinema Camera 6k</h4>
+                <h4 class="font-bold">$2535</h4>
+              </div>
+              <button class="bg-black text-white px-7 py-2 rounded">
+                Buy Now
+              </button>
+            </div>
+            <div
+              class="w-40 md:w-48 xl:w-48 lg:w-48 bg-gray-200 p-5 flex flex-col items-center text-center gap-3 rounded"
+            >
+              <img
+                src="images/smartwatch.png"
+                alt="smart watch"
+                class="inline-block w-9/12"
+              />
+              <div style="height: 130px">
+                <h4 class="font-medium">
+                  Apple Watch Series 9 GPS 41mm Starlight Aluminium Case
+                </h4>
+                <h4 class="font-bold">$399</h4>
+              </div>
+              <button class="bg-black text-white px-7 py-2 rounded">
+                Buy Now
+              </button>
+            </div>
+            <div
+              class="w-40 md:w-48 xl:w-48 lg:w-48 bg-gray-200 p-5 flex flex-col items-center text-center gap-3 rounded"
+            >
+              <img
+                src="images/headphone.png"
+                alt="headphone"
+                class="inline-block w-9/12"
+              />
+              <div style="height: 118px">
+                <h4 class="font-medium">AirPods Max Silver</h4>
+                <h4 class="font-bold">$549</h4>
+              </div>
+              <button class="bg-black text-white px-7 py-2 rounded">
+                Buy Now
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="flex flex-wrap bg-indigo-400 text-center justify-between items-center p-10 md:p-0 lg:p-0 xl:p-0"
+      >
+        <img
+          src="images/tab1.png"
+          alt="tab1"
+          class="w-1/5 invisible md:visible lg:visible xl:visible"
+        />
+        <div class="max-w-sm">
+          <h2 class="text-6xl text-blue-900 font-bold">11.11 Sale</h2>
+          <p class="text-white">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et
+          </p>
+        </div>
+        <img
+          src="images/tab2.png"
+          alt="tab2"
+          class="w-1/4 invisible md:visible lg:visible xl:visible"
+        />
+      </div>
+    </main>
+    <footer>
+      <div
+        class="bg-gray-950 grid md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 text-center gap-4 w-screen justify-center p-20 md:text-left lg:text-left xl:text-left"
+      >
+        <div
+          class="w-1/2 flex flex-wrap items-baseline justify-center md:justify-between lg:justify-between xl:justify-between gap-3"
+        >
+          <div class="w-1/2 mb-3">
+            <img
+              src="images/logo.png"
+              alt="logo"
+              class="inline-block object-contain w-60"
+            />
+          </div>
+          <div class="flex gap-10 items-center text-white">
+            <i class="fa-brands fa-twitter"></i>
+            <i class="fa-brands fa-facebook-f"></i>
+            <i class="fa-brands fa-tiktok"></i>
+            <i class="fa-brands fa-instagram"></i>
+          </div>
+        </div>
+        <div
+          class="flex flex-wrap md:flex-nowrap lg:flex-nowrap xl:flex-nowrap justify-center w-1/2 gap-16 text-slate-700"
+        >
+          <div>
+            <h5 class="text-xl">Services</h5>
+            <p>Bonus Program</p>
+            <p>Gift Card</p>
+            <p>Credit and Payment</p>
+            <p>Service Contracts</p>
+            <p>Non-cash account</p>
+            <p>Payment</p>
+          </div>
+          <div>
+            <h5 class="text-xl">Assistance to the buyer</h5>
+            <p>Find an order</p>
+            <p>Terms of delivery</p>
+            <p>Exchange and return of goods</p>
+            <p>Guarantee</p>
+            <p>Frequently asked questions</p>
+            <p>Terms of use of the site</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const burgerMenu = document.getElementById("burger-menu");
+      console.log(burgerMenu);
+      const navLinks = document.querySelector(".lg\\:flex");
+
+      burgerMenu.addEventListener("click", () => {
+        console.log("clicking");
+        navLinks.classList.toggle("hidden");
+      });
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const carousel = document.getElementById("default-carousel");
+        const items = carousel.querySelectorAll("[data-carousel-item]");
+        const indicators = carousel.querySelectorAll(
+          "[data-carousel-slide-to]"
+        );
+        const prevButton = carousel.querySelector("[data-carousel-prev]");
+        const nextButton = carousel.querySelector("[data-carousel-next]");
+
+        let currentIndex = 0;
+
+        function showSlide(index) {
+          items.forEach((item, i) => {
+            item.classList.toggle("hidden", i !== index);
+          });
+
+          indicators.forEach((indicator, i) => {
+            indicator.setAttribute("aria-current", i === index);
+          });
+        }
+
+        function showNextSlide() {
+          currentIndex = (currentIndex + 1) % items.length;
+          showSlide(currentIndex);
+        }
+
+        function showPrevSlide() {
+          currentIndex = (currentIndex - 1 + items.length) % items.length;
+          showSlide(currentIndex);
+        }
+
+        function handleIndicatorClick(event) {
+          const targetIndex = parseInt(
+            event.target.getAttribute("data-carousel-slide-to")
+          );
+          if (!isNaN(targetIndex)) {
+            currentIndex = targetIndex;
+            showSlide(currentIndex);
+          }
+        }
+
+        // Event listeners
+        nextButton.addEventListener("click", showNextSlide);
+        prevButton.addEventListener("click", showPrevSlide);
+        indicators.forEach((indicator) =>
+          indicator.addEventListener("click", handleIndicatorClick)
+        );
+
+        // Initial setup
+        showSlide(currentIndex);
+      });
+    </script>
+  </body>
+</html>
