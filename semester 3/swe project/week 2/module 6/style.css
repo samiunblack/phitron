@@ -1,0 +1,29 @@
+.amount-container {
+    display: flex;
+    justify-content: space-around;
+    
+}
+
+.amount-box {
+    padding: 20px;
+    border: 1px dotted gray;
+    width: 200px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    font-weight: bold;
+    border-radius: 5px;
+    background-color: cornflowerblue;
+}
+
+.amount-box:nth-child(2)
+{
+    background-color: crimson;
+}
+
+.amount-box:nth-child(3)
+{
+    background-color: blueviolet;
+}
