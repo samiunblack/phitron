@@ -238,3 +238,19 @@
     <li>Bootstrap</li>
 </ul>
 </details>
+<details>
+<summary>Week 2: Javascript and DOM</summary>
+<ul>
+    <li>Javascript</li>
+    <li>DOM</li>
+    <li>Fetch API</li>
+</ul>
+</details>
+<details>
+<summary>Week 3: Intro to Django</summary>
+<ul>
+    <li>Introduction to Django</li>
+    <li>Working with Django Template</li>
+    <li>More about templates and files</li>
+</ul>
+</details>
