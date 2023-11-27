@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Context</title>
+</head>
+<body>
+    <h1>context</h1>
+    <h2>Author : {{author}}</h2>
+    <h2>Age : {{age}}</h2>
+
+    {% if author == 'Stark' %}
+    <p>You are iron man</p>
+    {% elif author == 'Wayne' %}
+    <p>You are batman</p>
+    {% endif %}
+    <div>
+        <h1>{{ dummy_list | join:"  " }}</h1>
+        <h1>{{ birthday | date:"D d M Y" }}</h1>
+        <h1>{{value|default:"default value"}}</h1>
+    </div>
+</body>
+</html>
