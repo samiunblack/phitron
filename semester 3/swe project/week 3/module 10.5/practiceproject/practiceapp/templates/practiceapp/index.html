@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>This is practice page</h1>
+    <h3>School starts on {{school_start|date:"D d M Y"}} </h3>
+    <ul>
+        <li>
+            Courses {{data.3.name}} takes: {{data.3.courses|join:", "}}
+        </li>
+        <li>
+            Courses {{data.0.name}} takes: {{data.0.courses|join:", "|default:"No courses"}}
+        </li>
+        <li>
+            ID of {{data.5.name}} is 5 less than {{data.5.id|add:"5"}}
+        </li>
+        <li>
+           Capfirst applied on {{data.10.name|capfirst}} 
+        </li>
+        <li>
+            Courses {{data.13.name}} takes: {{data.13.courses|join:", "|cut:","}}
+        </li>
+        <li>First course taken by {{data.15.name}} is {{data.15.courses|first}}</li>
+        <li>Total number of courses taken by {{data.18.name}} is {{data.18.courses|length}}</li>
+        <li>Random student name: {{data|random}} </li>
+        <li>Courses taken by {{data.4.name}} are: {{data.4.courses|join:" "|truncatewords:2}}</li>
+    </ul>
+</body>
+</html>
