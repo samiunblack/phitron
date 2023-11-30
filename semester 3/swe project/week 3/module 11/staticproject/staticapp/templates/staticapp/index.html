@@ -1,0 +1,16 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% comment %} <link rel="stylesheet" href="{% static "styles/index.css" %}"> {% endcomment %}
+    <title>Document</title>
+</head>
+<body>
+    <h1>This is static app</h1>
+    <img src="{% static "images/illustration.jpg" %}" alt="" style="width:400px;">
+    <h1><a href="{% url 'about' 3 %}">About</a></h1>
+</body>
+</html>
