@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="" style="height:92vh; display: flex; align-items: center; justify-content: center;">
+    <div class="col-6">
+        <h1>Hero Restaurant</h1>
+        <p>
+            Welcome to our culinary haven, where every meal is a masterpiece and each moment is a celebration of flavor. Step into an ambiance that exudes warmth and sophistication, setting the stage for unforgettable dining experiences. Our chefs, driven by a passion for perfection, meticulously curate a menu that blends local, seasonal ingredients with creative flair. From the first bite to the last, savor the artistry of our dishes, each crafted to delight the senses and redefine your expectations. Join us in creating moments of culinary bliss, where every visit is an exploration of extraordinary flavors and exceptional hospitality.
+        </p>
+    </div>
+    <div>
+        <img src="{% static 'images/hero.jpeg' %}" alt="food" style="height:90vh;">
+    </div>
+</div>
+{% endblock %}
