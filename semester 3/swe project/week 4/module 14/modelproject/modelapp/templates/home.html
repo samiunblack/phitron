@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>This is home page</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Submit">
+    </form>
+    {% if students %}
+    {% for student in students %}
+    <h3>{{student.roll}} {{student.name}}</h3>
+    <p>{{student.address}}</p>
+    <button><a href="{% url 'delete_student' roll=student.roll %}">Delete</a></button>
+    {% endfor %}
+    {% else %}
+    <h3>No Data available to show</h3>
+    {% endif %}
+</body>
+</html>
