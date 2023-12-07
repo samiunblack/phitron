@@ -9,6 +9,7 @@
                 <div class="card-body">
                 <h5 class="card-title">{{task.task_title}}</h5>
                 <p class="card-text">{{task.task_description}}</p>
+                <p class="text-primary">{{task.task_assign_date}}</p>
                 {% for category in task.categories.all %}
                     <button class="btn btn-outline-primary" style="margin:5px;">{{category.name}}</button>
                 {% endfor %}
