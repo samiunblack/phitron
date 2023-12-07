@@ -1,0 +1,31 @@
+{% extends '_base.html' %}
+
+{% block content %}
+<div style="padding: 30px; ">
+    {% if tasks %}
+    <div style="display: flex; flex-wrap: wrap; gap: 30px; justify-content: center;">
+        {% for task in tasks %}
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                <h5 class="card-title">{{task.task_title}}</h5>
+                <p class="card-text">{{task.task_description}}</p>
+                {% for category in task.categories.all %}
+                    <button class="btn btn-outline-primary" style="margin:5px;">{{category.name}}</button>
+                {% endfor %}
+                <div style="margin:5px;">
+                    {% if task.is_completed %}
+                    <button class="btn btn-success" >Completed</button>
+                    {% else %}
+                    <a href="{% url 'edit_task' pk=task.pk %}"><button class="btn btn-info">edit</button></a>
+                    <a href="{% url 'delete_task' pk=task.pk %}"><button class="btn btn-danger">delete</button></a>
+                    {% endif %}
+                </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <h3>No tasks available yet!</h3>
+    {% endif %}
+</div>
+{% endblock content %}
