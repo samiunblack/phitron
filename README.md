@@ -254,3 +254,11 @@
     <li>More about templates and files</li>
 </ul>
 </details>
+<details>
+<summary>Week 4: Working with Models</summary>
+<ul>
+    <li>Forms in Django</li>
+    <li>Models and ModelForm in Django</li>
+    <li>Simple Blog Project Part I</li>
+</ul>
+</details>
