@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Musician
 from .forms import MusicianForm
+from album.models import Album
 
 # Create your views here.
-def create(request):
+def create_musician(request):
     form = MusicianForm()
     
     if request.method == "POST":
@@ -15,7 +16,7 @@ def create(request):
         
     return render(request, "create_musician.html", {"form": form})
 
-def edit(request, pk):
+def edit_musician(request, pk):
     musician = get_object_or_404(Musician, pk=pk)
     form = MusicianForm(instance=musician)
     
@@ -28,12 +29,13 @@ def edit(request, pk):
         
     return render(request, "create_musician.html", {"form": form})
 
-def delete(request, pk):
+def delete_musician(request, pk):
     musician = get_object_or_404(Musician, pk=pk)
     musician.delete()
     return redirect("home")
 
 
-def show(request):
+def show_musician(request):
     musicians = Musician.objects.all()
-    return render(request, "home.html", {"musicians": musicians})
+    albums = Album.objects.all()
+    return render(request, "home.html", {"musicians": musicians, "albums": albums})
