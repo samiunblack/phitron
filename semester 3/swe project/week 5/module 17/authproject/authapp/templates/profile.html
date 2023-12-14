@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+    <main>
+        <div>
+            <h1>Welcome back {{user}}</h1>
+            <a href="{% url "reset_pass" %}"><button class="btn btn-danger">Reset Password</button></a>
+            <a href="{% url 'forgot_pass' %}"><button class="btn btn-warning">Forgot password?</button></a> 
+            <a href="{% url "edit_profile" %}"><button class="btn btn-info">Edit Profile</button></a>
+        </div>
+    </main>
+</div>
+{% endblock %}
