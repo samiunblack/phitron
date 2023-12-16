@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div class="p-3 ">
+        {% if messages %}
+        {% for m in messages %}
+        <div class="toast align-items-center text-white bg-success border-0 show" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+              <div class="toast-body">
+                {{m}}
+              </div>
+              <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+          </div>
+          {% endfor %}
+          {% endif %}
+    <div class="d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+        <form action="" method="post" novalidate>
+            {% csrf_token %}
+            {{form | crispy}}
+        
+            <button type="submit" class="btn btn-primary">Create</button>
+        </form> 
+    </div>
+    </div>
+{% endblock %}
