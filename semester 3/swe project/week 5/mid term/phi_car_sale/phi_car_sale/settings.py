@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'buyer',
     'comment',
     'brand',
-    'car'
+    'car',
+    'django.contrib.humanize',
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"

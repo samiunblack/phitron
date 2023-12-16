@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
 {% include 'hero.html' %}
+{% include 'car_filter_menu.html' with brands=brands %}
 {% include 'show_cars.html' with cars=cars %}
 {% endblock content %}

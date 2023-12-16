@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+{% load humanize %}
+{% load crispy_forms_tags %}
+
+<div class="grid grid-cols-2 pt-3">
+    <img src="/media/{{car.image}}" alt="">
+    <div class="pl-10">
+        <h1 class="text-3xl font-bold">{{car.model}} Specs</h1>
+        <div class="text-lg pt-5">
+            <p>Brand: {{car.brand}}</p>
+            <p>Price: ${{car.price | intcomma}}</p>
+            <p>Available: {{car.quantity}}</p>
+            {% if user.is_authenticated and car.quantity != 0 %}
+            <a href="{% url "buy_car" pk=car.pk %}"><button type="button" class="mt-5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Buy Now</button>
+            {% endif %}</a>
+        </div>
+    </div>
+</div>
+
+<div class="ml-10 mt-10 mb-5">
+    {% for comment in comments %}
+    <div class="mb-5">
+        <div class="flex gap-3">
+            <h4 class="font-medium">{{comment.name}}</h4>
+            <small class="self-center">{{comment.created_on | timesince}} ago</small>
+        </div>
+        <p>{{comment.comment}}</p>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="flex ml-10 mt-10">
+    <div>
+        <form action="" method="post">
+            {% csrf_token %}
+            {{comment_form | crispy}}
+            <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Post</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

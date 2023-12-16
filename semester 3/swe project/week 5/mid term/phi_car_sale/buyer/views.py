@@ -6,6 +6,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
+from car.models import Car
 
 # Create your views here.
 class CreateUser(CreateView):
@@ -34,4 +35,5 @@ def logout_view(request):
 
 @login_required
 def profile(request):
-    return render(request, "profile.html")
+    cars = Car.objects.filter(buyers=request.user)
+    return render(request, "profile.html", {"cars": cars})
