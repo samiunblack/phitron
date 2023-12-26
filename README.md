@@ -262,3 +262,11 @@
     <li>Simple Blog Project Part I</li>
 </ul>
 </details>
+<details>
+<summary>Week 6: Bank Management Project</summary>
+<ul>
+    <li>Bank Management Project I</li>
+    <li>Bank Management Project II</li>
+    <li>Bank Management Project III</li>
+</ul>
+</details>
