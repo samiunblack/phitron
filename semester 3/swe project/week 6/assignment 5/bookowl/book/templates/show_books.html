@@ -1,0 +1,43 @@
+<section class="flex justify-center align-center mt-10">
+    <div style="width: 70%;">
+        <div class="flex justify-between">
+            <h3 class="text-2xl font-bold">Browse All Books</h3>
+        <div>
+            <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="text-white bg-indigo-600 hover:bg-indigo-800 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center " type="button">Filter
+                </button>
+                
+                <!-- Dropdown menu -->
+                <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 px-5 py-2.5">
+                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200 grid grid-cols-2" aria-labelledby="dropdownDefaultButton">
+                        <li>
+                            <a href="{% url "home" %}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">All</a>
+                        </li>
+                        {% for genre in genres %}
+                        <li>
+                            <a href="{% url "filter" genre=genre.name %}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{genre.name}}</a>
+                        </li>
+                        {% endfor %}
+                        
+                    </ul>
+                </div>
+    
+        </div>
+        </div>
+            <div class="grid grid-cols-4 mt-10 mb-10 gap-10">
+                {% for book in books %}
+                <a href="{% url 'book_detail' pk=book.pk %}">
+                    <div class="w-72 cursor-pointer">
+                        <div class="h-72">
+                            <img src="{{book.image}}" alt="" class="w-2/3 object-contain">
+                        </div>
+                        
+                        <div class="w-2/3 mt-3">
+                            <p class="font-medium text-sm h-11">{{book.title}}</p>
+                            <h4 class="text-lg text-violet-500 font-medium">${{book.price}}</h4>
+                        </div>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+    </div>
+</section>

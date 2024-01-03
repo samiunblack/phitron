@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="height:70vh;">
+    {% include 'hero_component.html' %}
+</div>
+<div>
+    {% include 'show_books.html' with books=books %}
+</div>
+
+{% endblock content %}

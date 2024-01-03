@@ -1,0 +1,16 @@
+
+
+{% for review in reviews %}
+<article>
+    <div class="flex items-center mb-4">
+        <img class="w-10 h-10 me-4 rounded-full" src="{{review.user.account.pfp}}" alt="">
+        <div class="font-medium dark:text-white">
+            <p>{{review.user.first_name}} {{reivew.user.last_name}}<time datetime="2014-08-16 19:00" class="block text-sm text-gray-500 dark:text-gray-400">
+                Joined on {{review.user.account.created_on}}</time></p>
+        </div>
+    </div>
+
+    <footer class="mb-5 text-sm text-gray-500 dark:text-gray-400"><p><time datetime="2017-03-03 19:00">{{review.created_on}}</time></p></footer>
+    <p class="mb-2 text-gray-500 dark:text-gray-400">{{review.text}}</p>
+</article>
+{% endfor %}

@@ -1,0 +1,80 @@
+
+
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="flex justify-center mt-10 mb-10">
+    <div class="max-w-screen-xl">
+        <div class="grid grid-cols-4 w-full gap-10">
+            <div class="col-span-1">
+                <div class="flex justify-center">
+                    <img src="{{book.image}}" alt="book" class="rounded-r-xl w-3/4 object-contain">
+                </div>
+                <div class="mt-5">
+                    <a href="{% url 'return_book' pk=book.pk %}"><button class="bg-red-600 text-white w-full font-medium rounded-full py-2">Return</button></a>
+                </div>
+            </div>
+            <div class="col-span-3">
+                <h1 class="text-3xl font-medium">{{book.title}}</h1>
+                <h3 class="text-xl pt-3">{{book.author}}</h3>
+                <h4 class="pt-2 text-lg text-indigo-600 font-medium">${{book.price}}</h4>
+                <div class="mt-5">
+                    <p class="text-justify">{{book.description}}</p>
+                </div>
+                <div class="mt-5">
+                    <span class="text-zinc-400">Genres</span>
+                    {% for genre in book.genres.all %}
+                    <span class="ml-2 mr-2 border-b-2 cursor-pointer border-indigo-600">{{genre.name}}</span>
+                    {% endfor %}
+                </div>
+                <div class="mt-5 text-gray-700 font-medium text-sm">
+                    <table class="w-1/2 text-left ">
+                        <tbody>
+                            <d class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                <th class=" py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    Published
+                                </th>
+                                <td class="px-6 py-2">
+                                    {{book.first_published}}
+                                </td>
+                            </d>
+                            <tr>
+                                <th class=" py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    Format
+                                </th>
+                                <td class="px-6 py-2">
+                                    {{book.pages}} pages, {{book.book_type}}
+                                </td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <th class=" py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    ISBN
+                                </th>
+                                <td class="px-6 py-2">
+                                    {{book.isbn}}
+                                </td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <th class=" py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    Language
+                                </th>
+                                <td class="px-6 py-2">
+                                    {{book.language.name}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="mt-10">
+                    <h2 class="text-2xl">Ratings and Reviews</h2>
+                    <div class="mt-10">
+                        {% include 'review.html' with form=review_form pk=book.pk reviews=reviews %}
+                        {% include 'reviews.html' with reviews=reviews %}
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="flex justify-center mt-10">
+    <div class="flex gap-10">
+        <img src="{{request.user.account.pfp}}" alt="" class="w-24 h-24 object-contain rounded-full">
+        <div>
+            <h3 class="text-2xl">@{{request.user.username}}</h3>
+            <h4 class="text-lg">{{request.user.first_name}} {{request.user.last_name}}</h4>
+            <small>{{request.user.account.created_on}}</small>
+        </div>
+
+    </div>
+</div>
+<div>
+</div>
+
+{% endblock content %}

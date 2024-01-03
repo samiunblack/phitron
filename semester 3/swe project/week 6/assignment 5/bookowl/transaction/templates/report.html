@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<section>
+<div class="flex flex-wrap justify-center">
+    <div class="flex mt-10 w-3/4">
+        <div class="flex gap-10">
+            <img src="{{request.user.account.pfp}}" alt="" class="w-24 h-24 object-contain rounded-full">
+            <div>
+                <h3 class="text-2xl">@{{request.user.username}}</h3>
+                <h4 class="text-lg">{{request.user.first_name}} {{request.user.last_name}}</h4>
+                <small>{{request.user.account.created_on}}</small>
+            </div>
+    
+        </div>
+    </div>
+    <div>
+    </div>
+    <div class="relative overflow-x-auto w-3/4 mt-10">
+        {% if transactions.all.count != 0 %}
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <thead class="text-xs uppercase text-white bg-indigo-600 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                    <th scope="col" class="px-6 py-3">
+                        Date and Time
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Transaction Type
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Amount
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Balance after Transaction
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for transaction in transactions %}
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-gray-900">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        {{transaction.created_on}}
+                    </th>
+                    <td class="px-6 py-4">
+                        {% if transaction.transaction_type == 1 %}
+                        <span class="bg-green-100 text-green-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">Deposit</span>
+                        {% endif %}
+                        {% if transaction.transaction_type == 2 %}
+                        <span class="bg-yellow-100 text-yellow-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300">Borrow</span>
+                        {% endif %}
+                        {% if transaction.transaction_type == 3 %}
+                        <span class="bg-blue-100 text-blue-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">Return</span>
+                        {% endif %}
+                    </td>
+                    <td class="px-6 py-4">
+                        ${{transaction.amount}}
+                    </td>
+                    <td class="px-6 py-4">
+                        ${{transaction.balance_after_transaction}}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr class="font-semibold  bg-gray-100 text-slate-900">
+                    <th scope="row" class="px-6 py-3 text-base">Total</th>
+                    <td class="px-6 py-3"></td>
+                    <td class="px-6 py-3"></td>
+                    <td class="px-6 py-3">${{request.user.account.balance}}</td>
+                </tr>
+            </tfoot>
+        </table>
+        {% else %}
+        <div>
+            <h1 class="text-center text-2xl font-medium">No Transaction to Show</h1>
+        </div>
+        {% endif %}
+       
+    </div>
+</div>
+
+
+</section>
+
+{% endblock %}
