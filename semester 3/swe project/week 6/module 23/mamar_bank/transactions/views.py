@@ -89,6 +89,9 @@ class WithdrawMoneyView(TransactionCreateMixin):
     def form_valid(self, form):
         amount = form.cleaned_data.get('amount')
 
+        if(self.request.user.account.balance < 0):
+            messages.error("Bank has gone bankrupt")
+
         self.request.user.account.balance -= form.cleaned_data.get('amount')
         # balance = 300
         # amount = 5000
@@ -98,6 +101,7 @@ class WithdrawMoneyView(TransactionCreateMixin):
             self.request,
             f'Successfully withdrawn {"{:,.2f}".format(float(amount))}$ from your account'
         )
+        
         send_transaction_email(self.request.user, amount, "Withdrawal Message", "transactions/withdrawal_email.html")
         return super().form_valid(form)
     
