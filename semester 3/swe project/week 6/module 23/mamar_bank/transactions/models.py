@@ -12,5 +12,15 @@ class Transaction(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
     loan_approve = models.BooleanField(default=False) 
     
+    
+    
     class Meta:
         ordering = ['timestamp'] 
+        
+        
+class Transfer(models.Model):
+    sender_account = models.ForeignKey(UserBankAccount, related_name='transfers_sent', on_delete=models.CASCADE, blank=True, null=True)
+    receiver_account = models.ForeignKey(UserBankAccount, related_name='transfers_received', on_delete=models.CASCADE, blank=True, null=True)
+    amount = models.DecimalField(decimal_places=2, max_digits=12, blank=True, null=True)
+    timestamp = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+        

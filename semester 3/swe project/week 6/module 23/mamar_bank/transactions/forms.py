@@ -1,5 +1,5 @@
 from django import forms
-from .models import Transaction
+from .models import Transaction, Transfer
 class TransactionForm(forms.ModelForm):
     class Meta:
         model = Transaction
@@ -58,6 +58,15 @@ class WithdrawForm(TransactionForm):
 
         return amount
 
+
+class TransferForm(forms.ModelForm):
+    class Meta:
+        model = Transfer
+        fields = ['sender_account', 'receiver_account', 'amount']
+
+    def clean(self):
+        cleaned_data = super().clean()
+        return cleaned_data
 
 
 class LoanRequestForm(TransactionForm):

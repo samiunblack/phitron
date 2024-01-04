@@ -1,13 +1,12 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
-from django.utils import timezone
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect, render
 from django.views import View
 from django.http import HttpResponse
-from django.views.generic import CreateView, ListView
+from django.views.generic import CreateView, ListView, TemplateView
 from transactions.constants import DEPOSIT, WITHDRAWAL,LOAN, LOAN_PAID
-from django.core.mail import EmailMessage, EmailMultiAlternatives
+from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from datetime import datetime
 from django.db.models import Sum
@@ -15,6 +14,7 @@ from transactions.forms import (
     DepositForm,
     WithdrawForm,
     LoanRequestForm,
+    TransferForm,
 )
 from transactions.models import Transaction
 
@@ -100,6 +100,22 @@ class WithdrawMoneyView(TransactionCreateMixin):
         )
         send_transaction_email(self.request.user, amount, "Withdrawal Message", "transactions/withdrawal_email.html")
         return super().form_valid(form)
+    
+def TransferMoney(request):
+    if request.method == 'POST':
+        form = TransferForm(request.POST)
+        
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Money transferred successfully!')
+            return redirect('home')
+        
+        else:
+            messages.error(request, 'Error in the transfer')
+    else:
+        form = TransferForm()
+
+    return render(request, 'transactions/transfer.html', {'form': form})
 
 class LoanRequestView(TransactionCreateMixin):
     form_class = LoanRequestForm
