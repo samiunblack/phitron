@@ -229,7 +229,13 @@
     </ul>
 </details>
 
-## Course 7: SWE Projects
+
+## Coruse 7: XPSC
+<a href="https://www.github.com/samiunblack/phitron/xpsc/README.md"><h3>All Problems List</h3></a>
+
+
+## Course 8: SWE Projects
+
 <details>
 <summary>Week 1: HTML, CSS, CSS Framework</summary>
 <ul>
@@ -268,5 +274,21 @@
     <li>Bank Management Project I</li>
     <li>Bank Management Project II</li>
     <li>Bank Management Project III</li>
+</ul>
+</details>
+<details>
+<summary>Week 7: Hospital Management Frontend</summary>
+<ul>
+    <li>Hospital Management Frontend I</li>
+    <li>Hospital Management Frontend II</li>
+    <li>Hospital Management Frontend III</li>
+</ul>
+</details>
+<details>
+<summary>Week 6: Hospital Management Backend</summary>
+<ul>
+    <li>Creating models</li>
+    <li>Creating serializers</li>
+    <li>Creating authentication system</li>
 </ul>
 </details>
