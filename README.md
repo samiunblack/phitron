@@ -231,7 +231,7 @@
 
 
 ## Coruse 7: XPSC
-<a href="https://www.github.com/samiunblack/phitron/xpsc/README.md"><h3>All Problems List</h3></a>
+### [All Problems List](https://github.com/samiunblack/phitron/tree/main/xpsc)
 
 
 ## Course 8: SWE Projects
