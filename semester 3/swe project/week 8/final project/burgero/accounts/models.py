@@ -16,16 +16,19 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="account")
     full_name = models.CharField(max_length=255)
     phone_no = models.IntegerField(blank=True, null=True)
-    cart = models.ManyToManyField(Food, blank=True, null=True)
+    cart = models.ManyToManyField(Food, blank=True)
 
 
     def save(self, *args, **kwargs):
         first_name, last_name = self.full_name.split(" ", 1) if " " in self.full_name else (self.full_name, '')
+        username = ("").join(self.full_name.split(" "))
 
-        self.first_name = first_name
-        self.last_name = last_name
+        self.user.first_name = first_name
+        self.user.last_name = last_name
+        self.user.username = username
 
-        super().save(self, *args, **kwargs)
+        self.user.save(update_fields=['first_name', 'last_name', 'username'])
+        super(UserProfile, self).save(*args, **kwargs)
 
     
     def __str__(self):

@@ -8,11 +8,11 @@ class UserRegistrationForm(UserCreationForm):
     
     class Meta:
         model = User
-        fields = ['full_name', 'username', 'email', 'password1', 'password2']
+        fields = ['full_name', 'email', 'password1', 'password2']
     
 
     def save(self, commit=True):
-        user = super.save(commit=False)
+        user = super().save(commit=False)
         
         if commit is True:
             user.save()

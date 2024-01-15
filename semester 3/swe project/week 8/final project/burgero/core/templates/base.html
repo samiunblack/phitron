@@ -1,0 +1,23 @@
+{% load compress %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% compress css %}
+    <link rel="stylesheet" href="{% static 'styles/output.css' %}">
+    {% endcompress %}
+    <title>Burgero</title>
+</head>
+<body>
+    <main>
+        {% block content %}
+        {% endblock %}
+       
+    </main>
+    {% comment %} {% include 'footer.html' %} {% endcomment %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+</body>
+</html>
