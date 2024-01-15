@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, HttpResponse
-from django.views.generic import FormView
-from .forms import UserRegistrationForm, UserLoginForm, UserUpdateForm
+from django.views.generic import FormView, CreateView
+from .forms import UserRegistrationForm, UserLoginForm, UserUpdateForm, AddressCreationForm
 from django.urls import reverse_lazy
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.views import LoginView, LogoutView
@@ -12,6 +12,7 @@ from django.template.loader import render_to_string
 from django.core.mail import EmailMultiAlternatives
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
+from .models import UserAddress
 
 
 class UserRegistrationView(FormView):
@@ -88,3 +89,17 @@ class UserUpdateView(View, LoginRequiredMixin):
             return redirect('home')  # Redirect to the user's profile page
         return render(request, self.template_name, {'form': form})
     
+
+class AddAddressView(CreateView):
+    model = UserAddress
+    template_name = 'add_address.html'
+    form_class = AddressCreationForm
+    success_url = reverse_lazy('home')
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs.update({
+            'user': self.request.user
+        })
+        
+        return kwargs

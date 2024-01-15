@@ -13,13 +13,13 @@ class DepositMoneyForm(forms.ModelForm):
 
     
     def save(self, commit=True):
-        transaction = super.save(commit=False)
+        transaction = super().save()
 
-        if commit is True:
-            transaction.wallet = self.wallet
-            transaction.transaction_type = 'Deposit'
-            transaction.payment_id = 100000 + transaction.id
+        
+        transaction.wallet = self.wallet
+        transaction.transaction_type = 'Deposit'
+        transaction.payment_id = 100000 + transaction.id
 
-            transaction.save()
+        transaction.save()
         
         return transaction

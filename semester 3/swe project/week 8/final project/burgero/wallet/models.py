@@ -4,13 +4,19 @@ from .constants import TRANSACTION_TYPES
 
 
 class Wallet(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="wallet")
     balance = models.DecimalField(max_digits=12, decimal_places=2)
+
+    def __str__(self):
+        return self.user.account.full_name
 
 
 class Transaction(models.Model):
-    wallet = models.ForeignKey(Wallet, on_delete=models.CASCADE)
-    transaction_type = models.CharField(choices=TRANSACTION_TYPES, max_length=100)
-    payment_id = models.IntegerField()
+    wallet = models.ForeignKey(Wallet, on_delete=models.CASCADE, null=True)
+    transaction_type = models.CharField(choices=TRANSACTION_TYPES, max_length=100, null=True)
+    payment_id = models.IntegerField(null=True)
     date = models.DateField(auto_now_add=True)
     amount = models.DecimalField(max_digits=12, decimal_places=2)
+
+    def __str__(self):
+        return self.wallet.user.account.full_name

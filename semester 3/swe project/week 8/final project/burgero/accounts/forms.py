@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .models import UserProfile, UserAddress
+from wallet.models import Wallet
 
 class UserRegistrationForm(UserCreationForm):
     full_name = forms.CharField(max_length=255)
@@ -23,6 +24,8 @@ class UserRegistrationForm(UserCreationForm):
                 full_name=full_name,
                 user=user
             )
+
+            Wallet.objects.create(user=user, balance=0.00)
 
         return user
     
@@ -74,4 +77,12 @@ class UserUpdateForm(forms.ModelForm):
 class AddressCreationForm(forms.ModelForm):
     class Meta: 
         model = UserAddress
-        fields = ['phone', 'street_address', 'postal_code', 'city', 'country']
+        fields = ['name', 'phone', 'street_address', 'postal_code', 'city', 'country']
+
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user')
+        super(AddressCreationForm, self).__init__(*args, **kwargs)
+
+    def save(self, commit=True):
+        self.instance.user = self.user
+        return super().save()

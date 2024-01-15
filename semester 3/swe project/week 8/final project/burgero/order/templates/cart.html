@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+    {% for item in items %}
+        <div>
+            {{item.price}}
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
