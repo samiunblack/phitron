@@ -77,7 +77,7 @@ class UserUpdateForm(forms.ModelForm):
 class AddressCreationForm(forms.ModelForm):
     class Meta: 
         model = UserAddress
-        fields = ['name', 'phone', 'street_address', 'postal_code', 'city', 'country']
+        fields = ['phone', 'street_address', 'postal_code', 'city', 'country']
 
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user')
