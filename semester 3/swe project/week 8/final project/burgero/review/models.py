@@ -10,3 +10,6 @@ class Review(models.Model):
     review = models.TextField()
     date = models.DateField(auto_now_add=True)
     item = models.ForeignKey(Food, on_delete=models.CASCADE, related_name="review")
+
+    def __str__(self):
+        return self.user.username

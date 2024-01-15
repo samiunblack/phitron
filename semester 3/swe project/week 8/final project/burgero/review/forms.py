@@ -14,7 +14,7 @@ class ReviewForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
 
     def save(self, commit=True):
-        review = super.save(commit=False)
+        review = super().save(commit=False)
 
         if commit is True:
             review.user = self.user

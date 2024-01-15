@@ -25,4 +25,5 @@ urlpatterns = [
     path('wallet/', include("wallet.urls")),
     path('', include("food.urls")),
     path('', include("order.urls")),
+    path('', include("review.urls")),
 ]

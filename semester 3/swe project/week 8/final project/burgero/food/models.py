@@ -1,5 +1,8 @@
 from django.db import models
 
+class Category(models.Model):
+    name = models.CharField(max_length=255)
+
 
 class Food(models.Model):
     name = models.CharField(max_length=100)
@@ -8,6 +11,7 @@ class Food(models.Model):
     image = models.URLField()
     is_discount = models.BooleanField(blank=True, default=False)
     discount_price = models.DecimalField(max_digits=12, decimal_places=2, blank=True, null=True)
+    category = models.ManyToManyField(Category)
 
 
     def __str__(self):

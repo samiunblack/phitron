@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div>
+    <h1>{{food.name}}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{form}}
+        <button type="submit">Post</button>
+    </form>
+</div>
+
+{% endblock content %}
