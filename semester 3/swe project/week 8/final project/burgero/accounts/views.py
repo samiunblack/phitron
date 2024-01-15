@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, HttpResponse
 from django.views.generic import FormView
-from .forms import UserRegistrationForm, UserLoginForm
+from .forms import UserRegistrationForm, UserLoginForm, UserUpdateForm
 from django.urls import reverse_lazy
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.views import LoginView, LogoutView
@@ -10,6 +10,8 @@ from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_bytes
 from django.template.loader import render_to_string
 from django.core.mail import EmailMultiAlternatives
+from django.views import View
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class UserRegistrationView(FormView):
@@ -70,3 +72,19 @@ class UserLogoutView(LogoutView):
         if self.request.user.is_authenticated:
             logout(self.request)
         return reverse_lazy('home')
+    
+
+class UserUpdateView(View, LoginRequiredMixin):
+    template_name = 'update_account.html'
+
+    def get(self, request):
+        form = UserUpdateForm(instance=request.user.account)
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request):
+        form = UserUpdateForm(request.POST, instance=request.user.account)
+        if form.is_valid():
+            form.save()
+            return redirect('home')  # Redirect to the user's profile page
+        return render(request, self.template_name, {'form': form})
+    

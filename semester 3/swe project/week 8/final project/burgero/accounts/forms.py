@@ -37,12 +37,9 @@ class UserLoginForm(forms.Form):
     
 
 class UserUpdateForm(forms.ModelForm):
-    full_name = forms.CharField(max_length=255)
-    phone = forms.IntegerField()
-
     class Meta:
-        model = User
-        fields = ["full_name", "phone"]
+        model = UserProfile
+        fields = ["full_name", "phone_no"]
     
 
     def __init__(self, *args, **kwargs):
@@ -50,30 +47,28 @@ class UserUpdateForm(forms.ModelForm):
 
         if self.instance:
             try:
-                user_account = self.instance.account
+                user_account = self.instance
             except UserProfile.DoesNotExist:
                 user_account = None
             
 
             if user_account:
                 self.fields['full_name'].initial = user_account.full_name
-                self.fields['phone'].initial = user_account.phone
+                self.fields['phone_no'].initial = user_account.phone_no
 
 
     def save(self, commit=True):
-        user = super().save(commit=False)
+        user_account = super().save(commit=False)
 
         if commit is True:
-            user.save()
-
-            user_account, created = UserProfile.objects.get_or_create(user=user)
+            user_account.save()
 
             user_account.full_name = self.cleaned_data['full_name']
-            user_account.phone = self.cleaned_data['phone']
+            user_account.phone = self.cleaned_data['phone_no']
 
             user_account.save()
         
-        return user
+        return user_account
     
 
 class AddressCreationForm(forms.ModelForm):

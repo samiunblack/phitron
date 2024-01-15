@@ -17,7 +17,7 @@ class UserAddress(models.Model):
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="account")
     full_name = models.CharField(max_length=255)
-    phone_no = models.IntegerField(blank=True, null=True)
+    phone_no = models.IntegerField(blank=True, null=True, verbose_name="phone")
     cart = models.ManyToManyField(Food, blank=True)
 
 

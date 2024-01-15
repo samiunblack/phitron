@@ -46,6 +46,11 @@
         <section>
             <div>
                 <div>
+                    <h1>Hello {{user.account.full_name}}</h1>
+                    <form action="{% url "logout" %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit">Logout</button>
+                    </form>
                     <h1>Enjoy Your <br> Delicious Food</h1>
                 <p>Delivering your food to any corner of the city within
                     30 minutes. Enjoy delicious foods anywhere anytime
