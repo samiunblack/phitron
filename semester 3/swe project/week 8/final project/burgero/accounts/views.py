@@ -1,26 +1,68 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, HttpResponse
 from django.views.generic import FormView
-from .forms import UserRegistrationForm
+from .forms import UserRegistrationForm, UserLoginForm
 from django.urls import reverse_lazy
-from django.contrib.auth import login, logout
+from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.views import LoginView, LogoutView
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.contrib.auth.models import User
+from django.contrib.auth.tokens import default_token_generator
+from django.utils.encoding import force_bytes
+from django.template.loader import render_to_string
+from django.core.mail import EmailMultiAlternatives
 
 
 class UserRegistrationView(FormView):
     template_name = 'user_registration.html'
     form_class = UserRegistrationForm
     success_url = reverse_lazy('home')
-    
-    def form_valid(self,form):
+
+    def form_valid(self, form):
         user = form.save()
-        login(self.request, user)
-        return super().form_valid(form)
+        token = default_token_generator.make_token(user)
+        uid = urlsafe_base64_encode(force_bytes(user.pk))
+        confirm_link = f"http://127.0.0.1:8000/accounts/active/{uid}/{token}"
+        email_subject = "Confirm Your Email"
+        email_body = render_to_string('confirm_email.html', {'confirm_link' : confirm_link})
+        
+        email = EmailMultiAlternatives(email_subject , '', to=[user.email])
+        email.attach_alternative(email_body, "text/html")
+        email.send()
+        return HttpResponse("Check your mail for confirmation")
+
+
+def activate(request, uid64, token):
+    try:
+        uid = urlsafe_base64_decode(uid64).decode()
+        user = User._default_manager.get(pk=uid)
+    except(User.DoesNotExist):
+        user = None 
+    
+    if user is not None and default_token_generator.check_token(user, token):
+        user.is_active = True
+        user.save()
+        return redirect('login')
+    else:
+        return redirect('register')
+
 
 
 class UserLoginView(LoginView):
     template_name = 'user_login.html'
-    def get_success_url(self):
-        return reverse_lazy('home')
+    success_url = reverse_lazy('home')
+    form_class = UserLoginForm
+
+    def form_valid(self, form):
+        email = form.cleaned_data['email']
+        password = form.cleaned_data['password']
+        user = authenticate(self.request, email=email, password=password)
+
+        if user is not None:
+            login(self.request, user)
+            return redirect("home")
+        else:
+            print("Error occured")
+            return render(self.request, self.template_name, {'form': form, 'error_message': 'Invalid login credentials'})
     
 
 class UserLogoutView(LogoutView):

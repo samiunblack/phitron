@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from food.models import Food
+import random
+import string
 
 class UserAddress(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -21,7 +23,7 @@ class UserProfile(models.Model):
 
     def save(self, *args, **kwargs):
         first_name, last_name = self.full_name.split(" ", 1) if " " in self.full_name else (self.full_name, '')
-        username = ("").join(self.full_name.split(" "))
+        username = ("").join(self.full_name.split(" ")) + ''.join(random.choice(string.ascii_letters) for i in range(8))
 
         self.user.first_name = first_name
         self.user.last_name = last_name

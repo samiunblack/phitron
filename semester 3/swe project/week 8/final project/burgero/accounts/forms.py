@@ -27,6 +27,15 @@ class UserRegistrationForm(UserCreationForm):
         return user
     
 
+class UserLoginForm(forms.Form):
+    email = forms.EmailField()
+    password = forms.CharField(widget=forms.PasswordInput())
+
+    def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop('request', None)
+        super(UserLoginForm, self).__init__(*args, **kwargs)
+    
+
 class UserUpdateForm(forms.ModelForm):
     full_name = forms.CharField(max_length=255)
     phone = forms.IntegerField()
