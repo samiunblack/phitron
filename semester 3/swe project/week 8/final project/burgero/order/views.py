@@ -1,15 +1,27 @@
 from django.shortcuts import render, redirect
 from .models import Order
 from wallet.models import Transaction
+from django.views.generic import ListView
 
 def cart(request):
-    return render(request, 'cart.html', {'items': request.user.account.cart.all()})
+    quantity = 0
+    total = 0
+    for item in request.user.account.cart.all():
+        quantity += item.quantity
+        if item.is_discount is False:
+            total += item.price * item.quantity
+        else:
+            total += item.discount_price * item.quantity
+    return render(request, 'cart.html', {'items': request.user.account.cart.all(), 'quantity': quantity, 'total': total})
 
 
 def place_order(request):
     total = 0
     for item in request.user.account.cart.all():
-        total += item.price
+        if item.is_discount is False:
+            total += item.price * item.quantity
+        else:
+            total += item.discount_price * item.quantity
     
     
     if(total < request.user.wallet.balance):
@@ -34,3 +46,15 @@ def place_order(request):
         return redirect("deposit_money")
 
     return redirect("home")
+
+
+class OrderHistoryView(ListView):
+    template_name = 'order_report.html'
+    model = Order
+    
+    def get_queryset(self):
+        queryset = super().get_queryset().filter(
+            user=self.request.user
+        ).order_by('-placed_on')
+       
+        return queryset

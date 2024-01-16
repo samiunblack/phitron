@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <section class="flex justify-center">
+        <div class="w-[85%]">
+            <h1 class="text-5xl font-bold text-red-950 mt-10 mb-10">Orders</h1>
+            <div class="relative overflow-x-auto">
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col" class="pl-6 py-3 ">
+                                # Order
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Placed On
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Items
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Total
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for order in object_list %}
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                <td class="pl-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    {{order.order_no}}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{order.placed_on}}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {% for item in order.items.all %}
+                                        {{item.name}}
+                                    {% endfor %}
+                                </td>
+                                <td class="px-6 py-4">
+                                    ${{order.total}}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+{% endblock %}

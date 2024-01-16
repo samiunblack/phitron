@@ -1,207 +1,209 @@
+{% extends 'base.html' %}
 {% load static %}
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Burgero</title>
-</head>
-<body>
-    <div>
-        {% comment %} navbar {% endcomment %}
-        <nav class="bg-white border-gray-200 dark:bg-gray-900">
-            <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-            <a href="{% url "home" %}" class="flex items-center space-x-3 rtl:space-x-reverse">
-                <img src="{% static 'image/logo.svg' %}" class="h-8" alt="Burgero Logo" />
-            </a>
-            <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
-                <span class="sr-only">Open main menu</span>
-                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
-                </svg>
-            </button>
-            <div class="hidden w-full md:block md:w-auto" id="navbar-default">
-                <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-                <li>
-                    <a href="{% url "home" %}" class="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500" aria-current="page">Home</a>
-                </li>
-                <li>
-                    <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Profile</a>
-                </li>
-                <li>
-                    <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Order History</a>
-                </li>
-                <li>
-                    <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Cart</a>
-                </li>
-                <li>
-                    <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Logout</a>
-                </li>
-                </ul>
-            </div>
-            </div>
-        </nav>
-        {% comment %} hero section {% endcomment %}
-        <section>
+{% block main %}
+    <section class="w-full">
+        {% comment %} header {% endcomment %}
+        <div class="flex justify-between items-center mt-5">
             <div>
-                <div>
-                    <h1>Hello {{user.account.full_name}}</h1>
-                    <form action="{% url "logout" %}" method="post">
-                        {% csrf_token %}
-                        <button type="submit">Logout</button>
-                    </form>
-                    <h1>Enjoy Your <br> Delicious Food</h1>
-                <p>Delivering your food to any corner of the city within
-                    30 minutes. Enjoy delicious foods anywhere anytime
-                </p>
-                <button>Order Now</button>
-                </div>
-                <div>
-                    <img src="{% static 'image/hero.png' %}" alt="hero burger">
-                </div>
+                <h1 class="text-red-950 mb-5 text-4xl font-bold leading-normal">Enjoy Your <br><span class="text-red-700">Delicious</span> Food</h1>
+                <p>Delivering your food to any corner of the city within <br>
+                    30 minutes. Enjoy delicious foods anywhere anytime</p>
+                <button class="text-white font-semibold h-[50px] px-10 mt-8 bg-red-700 rounded-md">Order Now</button>
             </div>
-        </section>
-        {% comment %} products section {% endcomment %}
-        <section>
             <div>
-                {% comment %} single card {% endcomment %}
-                <div>
-                    <div>
-                        <img src="{% static 'image/burger.png' %}" alt="">
-                    </div>
-                    <div>
-                        <h3>Beefy Bliss</h3>
-                        <div>
-                            {% comment %} ratings {% endcomment %}
-                            <div>
-                                <i class="star-icon"></i>
-                                <i class="star-icon"></i>
-                                <i class="star-icon"></i>
-                                <i class="star-icon"></i>
-                                <i class="star-icon"></i>
-                            </div>
-                            <p>(5)</p>
-                        </div>
-                        <p>Indulge in the savory goodness of our 
-                            perfectly crafted ...
-                        </p>
-                        <div>
-                            <h4>$6.79</h4>
-                            <i class="cart-icon"></i>
-                        </div>
-                    </div>
-                </div>
+                <img src="{% static 'image/hero.png' %}" alt="">
             </div>
-        </section>
-        {% comment %} marketing {% endcomment %}
-        <section>
-            <div>
-                <div>
-                    <img src="{% static 'image/marketing-burger.png' %}" alt="girl eating burger">
+        </div>
+        {% comment %} foods {% endcomment %}
+        <div>
+            <div class="mb-20">
+                <div class="flex justify-between items-center mt-20 mb-10">
+                    <h1 class="text-3xl font-bold text-red-950"><span class="text-red-700">Popular</span> Items</h1>
+                    <button class="py-2 px-8 rounded-md font-medium text-white bg-red-600">Filter</button>
                 </div>
-                <div>
-                    <h1>Our Stories Have <br>Adventures</h1>
-                    <p>Our secret to success? A winning combination of passion, quality, 
-                        and a commitment to crafting the most delicious burgers you've 
-                        ever savored.
-                    </p>
-                    <div>
-                        <div>
-                            <i class="burger"></i>
-                            <h4>12K+</h4>
-                            <p>Success Food</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        {% comment %} special discounts {% endcomment %}
-        <section>
-            <div>
-                <h2>Special Discount</h2>
-                <div>
-                    {% comment %} single card {% endcomment %}
-                    <div>
-                        <div>
-                            <img src="{% static "image/burger-discount.png" %}" alt="girl eating burger">
-                        </div>
-                        <div>
-                            <h3>Chicken Burger and Fries</h3>
-                            <div>
-                                <i class="check"></i>
-                                <p>1 Chicken Burger</p>
+                <div class="grid grid-cols-4 gap-5">
+                    {% for food in foods %}
+                        <div class="bg-red-600 text-white h-[420px] rounded-md p-7">
+                            <div class="flex justify-center mt-2 mb-7">
+                                <img src="{{food.image}}" alt="">
                             </div>
                             <div>
-                                <i class="check"></i>
-                                <p>1 Chicken Burger</p>
-                            </div>
-                            <div>
-                                <i class="check"></i>
-                                <p>1 Chicken Burger</p>
-                            </div>
-                            <div>
-                                <div>
-                                    <h4>$20.12</h4>
-                                    <p><strike>17.23</strike></p>
+                                <h3 class="font-semibold text-xl">{{food.name}}</h3>
+                                <div class="flex rating text-xs items-center" id="{{food.average_rating}} {{food.pk}} rating">
+                                    <i class="fa-solid fa-star cursor-pointer text-gray-500" id="1 {{food.pk}}"></i>
+                                    <i class="fa-solid fa-star cursor-pointer text-gray-500" id="2 {{food.pk}}"></i>
+                                    <i class="fa-solid fa-star cursor-pointer text-gray-500" id="3 {{food.pk}}"></i>
+                                    <i class="fa-solid fa-star cursor-pointer text-gray-500" id="4 {{food.pk}}"></i>
+                                    <i class="fa-solid fa-star cursor-pointer text-gray-500" id="5 {{food.pk}}"></i>
+                                    <span class="ml-1">({{food.review.count}})</span>
                                 </div>
-                                <button>Add to Cart</button>
+                                <p class="mt-7 text-sm">{{food.description}}</p>
+                                <div class="flex justify-between items-center mt-10">
+                                    <h4 class="font-bold text-xl">${{food.price}}</h4>
+                                    <a href="{% url "add_to_cart" pk=food.pk %}"><button class="bg-white text-red-700 px-5 py-2 rounded-md font-medium">Add to Cart</button></a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% comment %} marketing {% endcomment %}
+        <div>
+            <div class="flex justify-between items-center">
+                <div>
+                    <div>
+                        <img src="{% static 'image/marketing-burger.png' %}" alt="">
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <h1 class="text-red-950 text-4xl font-bold">Our <span class="text-red-700">Stories</span> Have <br>Adventures</h1>
+                        <p>Our secret to success? A winning combination of passion, quality, <br>
+                            and a commitment to crafting the most delicious burgers you've <br>
+                            ever savored.
+                        </p>
+                        <div class="grid grid-cols-3 justify-between mt-10">
+                            <div class="bg-red-600 text-white w-[101px] h-[101px] rounded-md flex flex-col justify-center items-center">
+                                <i class="fa-solid fa-burger mb-1"></i>
+                                <h4 class="font-bold">12K+</h4>
+                                <p class="text-xs">Success Food</p>
+                            </div>
+                            <div class="bg-red-600 text-white w-[101px] h-[101px] rounded-md flex flex-col justify-center items-center">
+                                <i class="fa-solid fa-award mb-1"></i>
+                                <h4 class="font-bold">16K+</h4>
+                                <p class="text-xs">Awards Winning</p>
+                            </div>
+                            <div class="bg-red-600 text-white w-[101px] h-[101px] rounded-md flex flex-col justify-center items-center">
+                                <i class="fa-solid fa-briefcase mb-1"></i>
+                                <h4 class="font-bold">5K+</h4>
+                                <p class="text-xs">Customer Review</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+        {% comment %} special discounts {% endcomment %}
+        <div>
+            <div class="mt-40 mb-20">
+                <h1 class="text-3xl font-bold text-red-700 mb-10">Special Discount</h1>
+                <div class="grid grid-cols-2 gap-12">
+                    {% for food in discounted_foods %}
+                        <div class="flex h-[329px] shadow-lg rounded-md">
+                            <div class="w-[50%]">
+                                <img src="{{food.image}}" alt="" class="h-full object-cover rounded-l-md">
+                            </div>
+                            <div class="w-[50%] px-5 pt-10">
+                                <div>
+                                    <h3 class="font-semibold text-xl mb-5">{{food.name}}</h3>
+                                    <p class="hidden discount-description">{{food.description}}</p>
+                                </div>
+                                <div class="flex justify-between mt-20">
+                                    <div>
+                                        <p class="font-bold text-red-600 text-xl">${{food.discount_price}}</p>
+                                        <p class="text-sm line-through text-gray-400">${{food.price}}</p>
+                                    </div>
+                                    <a href="{% url "add_to_cart" pk=food.pk %}"><button class="bg-red-600 text-white font-medium px-5 py-2 rounded-md">Add to Cart</button></a>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
         {% comment %} reviews {% endcomment %}
-        <section>
-            <h1>Hear from our customers</h1>
-            <div>
-                {% comment %} single comment {% endcomment %}
+        <div>
+            <div class="mt-32 mb-20">
+                <h1 class="text-4xl font-bold text-red-950 mb-20 text-center">Hear from our <span class="text-red-700">customers</span></h1>
                 <div>
-                    {% comment %} rating {% endcomment %}
-                    <div></div>
-                    <h4>Burger Beyond Compare!</h4>
-                    <p>Exceptional flavors and quality! 
-                        Every burger at Burgero is a masterpiece. 
-                        The attention to detail and commitment to 
-                        using fresh ingredients truly sets them apart. 
-                        A must-visit for burger enthusiasts!
-                    </p>
-                    <p>Kai Sum Mak, November 11, 2024</p>
-                </div>
-            </div>
-        </section>
-        <footer>
-            <div>
-                <div>
-                    <div>
-                        <img src="{% static 'image/logo.svg' %}" alt="">
-                    </div>
-                    <p>At Burgero, we invite you to embark on a
-                        journey of taste and delight. Our tables are
-                        more than just places.
-                    </p>
-                    <p>© 2024. All Rights Reserved</p>
-                </div>
-                <div>
-                    <div>
-                        <div>
-                            <h4>Quick Links</h4>
-                            <p>About Us</p>
-                            <p>My Account</p>
-                            <p>Cart</p>
-                            <p>Order History</p>
-                        </div>
-                        <div>
-                            <h4>Terms & Privacy</h4>
-                            <p>Trust & Safety</p>
-                            <p>Terms of Services</p>
-                            <p>Privacy Policy</p>
-                        </div>
+                    <div class="swiffy-slider slider-item-show3 slider-nav-outside slider-nav-dark slider-indicators-outside slider-indicators-round slider-indicators-dark slider-nav-animation slider-nav-animation-fadein ">
+                        <ul class="slider-container py-4">
+                            {% for review in reviews %}
+                            <li>
+                                <div class="w-[392px] min-h-[296px] bg-rose-50 p-6 rounded">
+                                    <div>
+                                        <div class="flex gap-1  my-5 rating" id="{{review.rating}} {{review.pk}} rating">
+                                            <i class="fa-solid fa-star cursor-pointer text-gray-500" id="1 {{review.pk}}"></i>
+                                            <i class="fa-solid fa-star cursor-pointer text-gray-500" id="2 {{review.pk}}"></i>
+                                            <i class="fa-solid fa-star cursor-pointer text-gray-500" id="3 {{review.pk}}"></i>
+                                            <i class="fa-solid fa-star cursor-pointer text-gray-500" id="4 {{review.pk}}"></i>
+                                            <i class="fa-solid fa-star cursor-pointer text-gray-500" id="5 {{review.pk}}"></i>
+                                        </div>
+                                        <div style="display: grid;
+                                        grid-template-rows: auto 1fr auto;
+                                        min-height: 200px;">
+                                            <div style="display: flex;
+                                            align-items: center;">
+                                                <div>
+                                                    <h3 class="font-semibold">{{review.heading}}</h3>
+                                                    <p>
+                                                        {{review.review}}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="mt-auto mb-auto" style="margin-top: auto; margin-bottom: auto;">
+                                                <p><span class="font-medium">{{review.user.account.full_name}}</span>, <span class="font-light">{{review.date}}</span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    
+                        <button type="button" class="slider-nav" aria-label="Go left"></button>
+                        <button type="button" class="slider-nav slider-nav-next" aria-label="Go left"></button>
                     </div>
                 </div>
             </div>
-        </footer>
-    </div>
-</body>
-</html>
+        </div>
+    </section>
+
+    <script>
+        const handleRating = () => {
+            let elements = document.getElementsByClassName("rating")
+            Array.from(elements).forEach((element) => {
+                let rating = element.id
+                rating_arr = rating.split(" ")
+                rating = rating_arr[0]
+                id = rating_arr[1]
+                for(let i = 1; i <= rating; i++)
+                {   
+                    elem_id = String(i) + " " + String(id)
+                    console.log(elem_id)
+                    const star = document.getElementById(elem_id)
+                    star.classList.remove("text-gray-500")
+                    star.classList.add("text-yellow-300")
+                }  
+            })
+        }
+
+        const handleDiscountFoodDescription = () => {
+            let elements = document.getElementsByClassName("discount-description")
+
+            Array.from(elements).forEach((element) => {
+                console.log(element)
+                console.log(element.parentNode)
+
+                let description = element.innerText
+                let points = description.split("\n")
+                console.log(points)
+                for(point of points)
+                {
+                    const p = document.createElement("p")
+                    p.classList.add("text-[#ABABAE]")
+                    p.classList.add("mb-2")
+                    p.innerHTML = `<span class="text-red-600"><i class="fa-regular fa-circle-check"></i></span> ${point}`
+                    element.parentNode.appendChild(p)
+                }
+            })
+        }
+        
+        handleDiscountFoodDescription()
+        handleRating()
+    </script>
+{% endblock %}

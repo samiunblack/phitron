@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
+<section>
+    <div class="flex flex-col items-center">
+        <div class="w-11/12">
+            <div class="flex justify-center">
+                <div>
+                    <h1 class="text-5xl text-red-950 font-bold mt-20 mb-10">Reviews</h1>
+            <div>
+                <div class="grid gap-3 grid-cols-3">
+                    {% for review in object_list %}
+                        <div class="w-[392px] min-h-[296px] bg-rose-50 p-6 rounded">
+                            <div>
+                                <div class="flex gap-1  my-5 rating" id="{{review.rating}} {{review.pk}} rating">
+                                    <i class="fa-solid fa-star cursor-pointer text-gray-500" id="1 {{review.pk}}"></i>
+                                    <i class="fa-solid fa-star cursor-pointer text-gray-500" id="2 {{review.pk}}"></i>
+                                    <i class="fa-solid fa-star cursor-pointer text-gray-500" id="3 {{review.pk}}"></i>
+                                    <i class="fa-solid fa-star cursor-pointer text-gray-500" id="4 {{review.pk}}"></i>
+                                    <i class="fa-solid fa-star cursor-pointer text-gray-500" id="5 {{review.pk}}"></i>
+                                </div>
+                                <div style="display: grid;
+                                grid-template-rows: auto 1fr auto;
+                                min-height: 200px;">
+                                    <div style="display: flex;
+                                    align-items: center;">
+                                        <div>
+                                            <h3 class="font-semibold">{{review.heading}}</h3>
+                                            <p>
+                                                {{review.review}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="mt-auto mb-auto" style="margin-top: auto; margin-bottom: auto;">
+                                        <p><span class="font-medium">{{review.item.name}}</span>, <span class="font-light">{{review.date}}</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    const handleRating = () => {
+        let elements = document.getElementsByClassName("rating")
+        Array.from(elements).forEach((element) => {
+            let rating = element.id
+            rating_arr = rating.split(" ")
+            rating = rating_arr[0]
+            id = rating_arr[1]
+            for(let i = 1; i <= rating; i++)
+            {   
+                elem_id = String(i) + " " + String(id)
+                console.log(elem_id)
+                const star = document.getElementById(elem_id)
+                star.classList.remove("text-gray-500")
+                star.classList.add("text-yellow-300")
+            }  
+        })
+    }
+    handleRating()
+</script>
+
+{% endblock %}

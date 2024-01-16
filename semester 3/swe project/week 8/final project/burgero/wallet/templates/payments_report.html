@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <section class="flex justify-center mb-20">
+        <div class="w-[85%]">
+            <h1 class="text-5xl font-bold text-red-950 mt-10 mb-10">Orders</h1>
+            <div class="relative overflow-x-auto">
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col" class="pl-6 py-3 ">
+                                # Payment
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Date
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Type
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Amount
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for payment in object_list %}
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                <td class="pl-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    {{payment.payment_id}}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{payment.date}}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{payment.transaction_type}}
+                                </td>
+                                <td class="px-6 py-4">
+                                    ${{payment.amount}}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                    <tfoot>
+                        <tr class="font-semibold bg-red-600 text-white">
+                            <th scope="row" class="px-6 py-3 text-base">Total</th>
+                            <td class="px-6 py-3"></td>
+                            <td class="px-6 py-3"></td>
+                            <td class="px-6 py-3">${{user.wallet.balance}}</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </section>
+{% endblock %}

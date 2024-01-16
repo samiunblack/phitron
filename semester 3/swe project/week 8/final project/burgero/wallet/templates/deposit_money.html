@@ -1,13 +1,25 @@
 {% extends 'base.html' %}
+{% block main %}
 
-{% block content %}
+<section>
+    <div>
+        <div  class="flex flex-col items-center justify-center h-full mt-20">
+            <h1 class="text-3xl font-bold text-red-950">Deposit to Wallet</h1>
+            <form method="post" class="w-[40%] bg-zinc-50 p-10 rounded mt-10 mb-10">
+                {% csrf_token %}
+                <div class="mb-5">
+                    <label for="{{form.amount.id_for_label}}" class="pb-3">{{form.amount.label}}</label>
+                    {{form.amount}}
+                    {% if form.amount.errors %}
+                        {% for error in form.amount.errors %}
+                        <p class="text-red-700">{{error}}</p>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <button type="submit" class="w-full h-[50px] bg-red-700 text-white font-semibold rounded-md">Deposit</button>
+            </form>
+        </div>
+    </div>
+</section>
 
-<div>
-    <form method="post">
-        {% csrf_token %}
-        {{form}}
-        <button type="submit">Deposit</button>
-    </form>
-</div>
-
-{% endblock content %}
+{% endblock main %}

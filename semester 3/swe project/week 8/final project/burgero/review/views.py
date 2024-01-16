@@ -1,6 +1,6 @@
 from typing import Any
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import CreateView
+from django.views.generic import CreateView, ListView
 from .models import Review
 from .forms import ReviewForm
 from django.urls import reverse_lazy
@@ -21,7 +21,6 @@ class AddReviewView(CreateView):
         kwargs.update({
             'user': self.request.user,
             'food': food,
-            'rating': 5,
         })
 
         return kwargs
@@ -34,3 +33,15 @@ class AddReviewView(CreateView):
             'food': food,
         })
         return context
+    
+
+class ReviewListView(ListView):
+    template_name = 'reviews.html'
+    model = Review
+    
+    def get_queryset(self):
+        queryset = super().get_queryset().filter(
+            user=self.request.user
+        )
+       
+        return queryset

@@ -10,7 +10,6 @@ class UserAddress(models.Model):
     postal_code = models.IntegerField()
     city = models.CharField(max_length=200)
     country = models.CharField(max_length=100)
-    phone = models.IntegerField()
 
 
     def __str__(self):

@@ -1,30 +1,61 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block content %}
+{% block main %}
 {% comment %} form errors {% endcomment %}
 {% if form.non_field_errors %} {% for error in form.non_field_errors %}
-<div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-2" role="alert">
-    <p class="font-bold">Error!</p>
-    <p class="block sm:inline">{{ error }}</p>
+<div id="toast-danger" class="flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800" role="alert">
+    <div class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-red-500 bg-red-100 rounded-lg dark:bg-red-800 dark:text-red-200">
+        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 11.793a1 1 0 1 1-1.414 1.414L10 11.414l-2.293 2.293a1 1 0 0 1-1.414-1.414L8.586 10 6.293 7.707a1 1 0 0 1 1.414-1.414L10 8.586l2.293-2.293a1 1 0 0 1 1.414 1.414L11.414 10l2.293 2.293Z"/>
+        </svg>
+        <span class="sr-only">Error icon</span>
+    </div>
+    <div class="ms-3 text-sm font-normal">{{error}}</div>
 </div>
 {% endfor %} {% endif %} {% if form.non_field_errors %} {% for error in form.non_field_errors %}
-<div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-2" role="alert">
-    <p class="font-bold">Error!</p>
-    <p class="block sm:inline">{{ error }}</p>
+<div id="toast-danger" class="flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800" role="alert">
+    <div class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-red-500 bg-red-100 rounded-lg dark:bg-red-800 dark:text-red-200">
+        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 11.793a1 1 0 1 1-1.414 1.414L10 11.414l-2.293 2.293a1 1 0 0 1-1.414-1.414L8.586 10 6.293 7.707a1 1 0 0 1 1.414-1.414L10 8.586l2.293-2.293a1 1 0 0 1 1.414 1.414L11.414 10l2.293 2.293Z"/>
+        </svg>
+        <span class="sr-only">Error icon</span>
+    </div>
+    <div class="ms-3 text-sm font-normal">{{error}}</div>
 </div>
 {% endfor %} {% endif %}
 
 <div>
-    <h1>Log In</h1>
-    <div>
-        <form method="post">
+    <h1 class="text-5xl font-bold text-red-950 mt-20 mb-10 text-center">Edit Profile</h1>
+    <div class="flex justify-center">
+        <form method="post" class="w-[500px] bg-zinc-50 p-14 mb-32 rounded">
             {% csrf_token %} {% for hidden_field in form.hidden_fields %} {{ hidden_field.errors }} {{ hidden_field }} {% endfor %}
-
-            {{form}}
-            <button type="submit">Save Changes</button>
+            <div class="mb-7">
+                <label>Email</label>
+                <p class="mt-2">{{user.email}}</p>
+            </div>
+            <div class="mb-7">
+                <label for="{{form.full_name.id_for_label}}">{{form.full_name.label}}</label>
+                {{form.full_name}}
+                {% if form.full_name.errors %}
+                    {% for error in form.full_name.errors %}
+                    <p>{{error}}</p>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="mb-7">
+                <label for="{{form.phone_no.id_for_label}}">{{form.phone_no.label}}</label>
+                {{form.phone_no}}
+                {% if form.phone_no.errors %}
+                    {% for error in form.phone_no.errors %}
+                    <p>{{error}}</p>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <button type="submit" class="text-center h-[50px] w-full bg-red-700 text-white font-semibold rounded-md mt-10">Save Changes</button>
         </form>
     </div>
 </div>
 
 {% endblock %}
+

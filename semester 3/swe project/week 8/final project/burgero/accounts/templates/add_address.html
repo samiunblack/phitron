@@ -1,12 +1,78 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block content %}
-    <div>
-        <form method="post">
-            {% csrf_token %}
-            {{form}}
-            <button type="submit">Add New Address</button>
+{% block main %}
+{% comment %} form errors {% endcomment %}
+{% if form.non_field_errors %} {% for error in form.non_field_errors %}
+<div id="toast-danger" class="flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800" role="alert">
+    <div class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-red-500 bg-red-100 rounded-lg dark:bg-red-800 dark:text-red-200">
+        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 11.793a1 1 0 1 1-1.414 1.414L10 11.414l-2.293 2.293a1 1 0 0 1-1.414-1.414L8.586 10 6.293 7.707a1 1 0 0 1 1.414-1.414L10 8.586l2.293-2.293a1 1 0 0 1 1.414 1.414L11.414 10l2.293 2.293Z"/>
+        </svg>
+        <span class="sr-only">Error icon</span>
+    </div>
+    <div class="ms-3 text-sm font-normal">{{error}}</div>
+</div>
+{% endfor %} {% endif %} {% if form.non_field_errors %} {% for error in form.non_field_errors %}
+<div id="toast-danger" class="flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800" role="alert">
+    <div class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-red-500 bg-red-100 rounded-lg dark:bg-red-800 dark:text-red-200">
+        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 11.793a1 1 0 1 1-1.414 1.414L10 11.414l-2.293 2.293a1 1 0 0 1-1.414-1.414L8.586 10 6.293 7.707a1 1 0 0 1 1.414-1.414L10 8.586l2.293-2.293a1 1 0 0 1 1.414 1.414L11.414 10l2.293 2.293Z"/>
+        </svg>
+        <span class="sr-only">Error icon</span>
+    </div>
+    <div class="ms-3 text-sm font-normal">{{error}}</div>
+</div>
+{% endfor %} {% endif %}
+
+<div>
+    <h1 class="text-5xl font-bold text-red-950 mt-20 mb-10 text-center">Add Address</h1>
+    <div class="flex justify-center">
+        <form method="post" class="w-[998px] bg-zinc-50 p-14 mb-32 rounded">
+            {% csrf_token %} {% for hidden_field in form.hidden_fields %} {{ hidden_field.errors }} {{ hidden_field }} {% endfor %}
+            <div class="grid grid-cols-2 gap-5">
+                <div>
+                    <label for="{{form.street_address.id_for_label}}">{{form.street_address.label}}</label>
+                    {{form.street_address}}
+                    {% if form.street_address.errors %}
+                        {% for error in form.street_address.errors %}
+                        <p>{{error}}</p>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div>
+                    <label for="{{form.postal_code.id_for_label}}">{{form.postal_code.label}}</label>
+                    {{form.postal_code}}
+                    {% if form.postal_code.errors %}
+                        {% for error in form.postal_code.errors %}
+                        <p>{{error}}</p>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="mb-5">
+                    <label for="{{form.city.id_for_label}}">{{form.city.label}}</label>
+                    {{form.city}}
+                    {% if form.city.errors %}
+                        {% for error in form.city.errors %}
+                        <p>{{error}}</p>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="mb-5">
+                    <label for="{{form.country.id_for_label}}">{{form.country.label}}</label>
+                    {{form.country}}
+                    {% if form.country.errors %}
+                        {% for error in form.country.errors %}
+                        <p>{{error}}</p>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+            
+            <button type="submit" class="text-center h-[50px] w-full bg-red-700 text-white font-semibold rounded-md mt-10">Save Changes</button>
         </form>
     </div>
+</div>
 
 {% endblock %}
+

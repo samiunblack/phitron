@@ -1,49 +1,78 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% block body %} {% endblock %}
+{% block footer %} {% endblock %}
 {% block content %}
 {% comment %} form errors {% endcomment %}
 {% if form.non_field_errors %} {% for error in form.non_field_errors %}
-<div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-2" role="alert">
-    <p class="font-bold">Error!</p>
-    <p class="block sm:inline">{{ error }}</p>
+<div id="toast-danger" class="flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800" role="alert">
+    <div class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-red-500 bg-red-100 rounded-lg dark:bg-red-800 dark:text-red-200">
+        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 11.793a1 1 0 1 1-1.414 1.414L10 11.414l-2.293 2.293a1 1 0 0 1-1.414-1.414L8.586 10 6.293 7.707a1 1 0 0 1 1.414-1.414L10 8.586l2.293-2.293a1 1 0 0 1 1.414 1.414L11.414 10l2.293 2.293Z"/>
+        </svg>
+        <span class="sr-only">Error icon</span>
+    </div>
+    <div class="ms-3 text-sm font-normal">{{error}}</div>
 </div>
 {% endfor %} {% endif %} {% if form.non_field_errors %} {% for error in form.non_field_errors %}
-<div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-2" role="alert">
-    <p class="font-bold">Error!</p>
-    <p class="block sm:inline">{{ error }}</p>
+<div id="toast-danger" class="flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800" role="alert">
+    <div class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-red-500 bg-red-100 rounded-lg dark:bg-red-800 dark:text-red-200">
+        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 11.793a1 1 0 1 1-1.414 1.414L10 11.414l-2.293 2.293a1 1 0 0 1-1.414-1.414L8.586 10 6.293 7.707a1 1 0 0 1 1.414-1.414L10 8.586l2.293-2.293a1 1 0 0 1 1.414 1.414L11.414 10l2.293 2.293Z"/>
+        </svg>
+        <span class="sr-only">Error icon</span>
+    </div>
+    <div class="ms-3 text-sm font-normal">{{error}}</div>
 </div>
 {% endfor %} {% endif %}
 
 <div>
-    <h1>Log In</h1>
-    <div>
-        <form method="post">
-            {% csrf_token %} {% for hidden_field in form.hidden_fields %} {{ hidden_field.errors }} {{ hidden_field }} {% endfor %}
-            {% comment %} email {% endcomment %}
+    <div class="flex">
+        <div class="w-[45%] h-screen flex justify-center">
             <div>
-                <label for="{{form.email.id_for_label}}">{{form.email.label}}</label>
-                {{form.email}}
-                {% if form.email.errors %}
-                    {% for error in form.email.errors %}
-                    <p>{{error}}</p>
-                    {% endfor %}
-                {% endif %}
+                <div>
+                    <a href="{% url "home" %}">
+                        <img src="{% static 'image/logo.svg' %}" alt="logo" class='mt-20 mb-20'>
+                    </a>
+                </div>
+                <h1 class="text-2xl font-semibold">Log In</h1>
+                <p class="text-zinc-300 text-sm">Enter your email and password to login to your account</p>
+                <form method="post" class="w-[405px] mt-14">
+                    {% csrf_token %} {% for hidden_field in form.hidden_fields %} {{ hidden_field.errors }} {{ hidden_field }} {% endfor %}
+        
+                    {% comment %} email {% endcomment %}
+                    <div class="mb-5">
+                        <label for="{{form.email.id_for_label}}">{{form.email.label}}</label>
+                        {{form.email}}
+                        {% if form.email.errors %}
+                            {% for error in form.email.errors %}
+                            <p class="text-red-700">{{error}}</p>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+        
+                    {% comment %} password1 {% endcomment %}
+                    <div class="mb-5">
+                        <label for="{{form.password.id_for_label}}">{{form.password.label}}</label>
+                        {{form.password}}
+                        {% if form.password.errors %}
+                            {% for error in form.password.errors %}
+                            <p class="text-red-700">{{error}}</p>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+        
+        
+                    <button type="submit" class="text-center h-[50px] w-full bg-red-700 text-white font-semibold rounded-md">Sign In</button>
+                    <p class="text-gray-300 text-sm mt-3">Don’t have an account? <a class="text-red-700" href={% url "register" %}>Sign Up</a></p>
+                </form>
             </div>
-
-            {% comment %} password1 {% endcomment %}
-            <div>
-                <label for="{{form.password.id_for_label}}">{{form.password.label}}</label>
-                {{form.password}}
-                {% if form.password.errors %}
-                    {% for error in form.password.errors %}
-                    <p>{{error}}</p>
-                    {% endfor %}
-                {% endif %}
-            </div>
-
-            <button type="submit">Sign In</button>
-        </form>
+            
+        </div>
+        
+        <div class="w-[55%]">
+            <img src="{% static 'image/authen-burger.jpg' %}" alt="" class="w-full object-cover h-screen">
+        </div>
     </div>
 </div>
 

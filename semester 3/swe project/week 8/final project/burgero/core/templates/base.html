@@ -2,20 +2,49 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en" >
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% compress css %}
     <link rel="stylesheet" href="{% static 'styles/output.css' %}">
     {% endcompress %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/js/swiffy-slider.min.js" crossorigin="anonymous" defer></script>
+    <link href="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/css/swiffy-slider.min.css" rel="stylesheet" crossorigin="anonymous">
     <title>Burgero</title>
 </head>
 <body>
+    {% block body %}
+    <main style="min-height: 100vh;
+    display: flex;
+    flex-direction: column;">
+        {% block container %}
+        <div class="flex justify-center">
+            
+                <div class="w-[80%]">
+                    {% include 'navbar.html' %}
+                    {% block main %}
+
+                    {% endblock %}
+                </div>
+        </div>
+        {% endblock %}
+        <div style="margin-top: auto;">
+            {% block footer %}
+            {% include 'footer.html' %}
+        {% endblock %}
+        </div>
+        
+        
+    </main>
+    {% endblock %}
     <main>
         {% block content %}
         {% endblock %}
-       
     </main>
     {% comment %} {% include 'footer.html' %} {% endcomment %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>

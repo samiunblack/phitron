@@ -1,5 +1,4 @@
-from django.shortcuts import render
-from django.views.generic import CreateView
+from django.views.generic import CreateView, ListView
 from .models import Transaction
 from django.urls import reverse_lazy
 from .forms import DepositMoneyForm
@@ -22,3 +21,15 @@ class DepositMoneyView(CreateView):
         self.request.user.wallet.save(update_fields=['balance'])
 
         return super().form_valid(form)
+    
+
+class PaymentReportView(ListView):
+    template_name = 'payments_report.html'
+    model = Transaction
+    
+    def get_queryset(self):
+        queryset = super().get_queryset().filter(
+            wallet=self.request.user.wallet
+        ).order_by('-date')
+       
+        return queryset

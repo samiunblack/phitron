@@ -1,14 +1,83 @@
 {% extends 'base.html' %}
 
-{% block content %}
+{% block main %}
 
-<div>
-    <h1>{{food.name}}</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{form}}
-        <button type="submit">Post</button>
-    </form>
+{% if form.non_field_errors %} {% for error in form.non_field_errors %}
+<div id="toast-danger" class="flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800" role="alert">
+    <div class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-red-500 bg-red-100 rounded-lg dark:bg-red-800 dark:text-red-200">
+        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 11.793a1 1 0 1 1-1.414 1.414L10 11.414l-2.293 2.293a1 1 0 0 1-1.414-1.414L8.586 10 6.293 7.707a1 1 0 0 1 1.414-1.414L10 8.586l2.293-2.293a1 1 0 0 1 1.414 1.414L11.414 10l2.293 2.293Z"/>
+        </svg>
+        <span class="sr-only">Error icon</span>
+    </div>
+    <div class="ms-3 text-sm font-normal">{{error}}</div>
 </div>
+{% endfor %} {% endif %} {% if form.non_field_errors %} {% for error in form.non_field_errors %}
+<div id="toast-danger" class="flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800" role="alert">
+    <div class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-red-500 bg-red-100 rounded-lg dark:bg-red-800 dark:text-red-200">
+        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 11.793a1 1 0 1 1-1.414 1.414L10 11.414l-2.293 2.293a1 1 0 0 1-1.414-1.414L8.586 10 6.293 7.707a1 1 0 0 1 1.414-1.414L10 8.586l2.293-2.293a1 1 0 0 1 1.414 1.414L11.414 10l2.293 2.293Z"/>
+        </svg>
+        <span class="sr-only">Error icon</span>
+    </div>
+    <div class="ms-3 text-sm font-normal">{{error}}</div>
+</div>
+{% endfor %} {% endif %}
 
-{% endblock content %}
+<section class="mb-20">
+    <h1 class="text-5xl font-bold text-red-950 text-center mb-10 mt-5 shadow-none">Review {{food.name}}</h1>
+    <div class="flex justify-center">
+        <form method="post" class="bg-zinc-50 w-[35%] rounded p-10">
+            {% csrf_token %}
+            <div class="flex justify-center">
+                <div class="w-full">
+                    <div>
+                        <div class="flex text-2xl gap-2 justify-center my-5">
+                            <i class="fa-solid fa-star cursor-pointer text-gray-500" id="1" onclick=handleClick(event)></i>
+                            <i class="fa-solid fa-star cursor-pointer text-gray-500" id="2" onclick=handleClick(event)></i>
+                            <i class="fa-solid fa-star cursor-pointer text-gray-500" id="3" onclick=handleClick(event)></i>
+                            <i class="fa-solid fa-star cursor-pointer text-gray-500" id="4" onclick=handleClick(event)></i>
+                            <i class="fa-solid fa-star cursor-pointer text-gray-500" id="5" onclick=handleClick(event)></i>
+                        </div>
+                    </div>
+                    <div class="py-5">
+                        <label for="{{form.heading.id_for_label}}">{{form.heading.label}}</label>
+                        {{form.heading}}
+                    </div>
+                    <div class="py-5">
+                        <label for="{{form.review.id_for_label}}">{{form.review.label}}</label>
+                        {{form.review}}
+                    </div>
+                    <input type="number" name="rating" value="0" class="hidden appearance-none w-full text-gray-700 border border-red-700 bg-zinc-50 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-zinc-50 focus:border-red-700" required="" id="id_rating" autocomplete="off">
+                    <button type="submit" class="w-full bg-red-700 text-white h-[50px] rounded-lg my-8">Post</button>
+    
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+
+<script>
+    const handleClick = (e) => {
+        
+        for(let i = 1; i <= 5; i++)
+        {
+            const star = document.getElementById(String(i))
+            star.classList.remove("text-amber-400")
+            star.classList.add("text-gray-500")
+            
+        }
+
+        for(let i = 1; i <= e.target.id; i++)
+        {
+            const star = document.getElementById(String(i))
+            star.classList.remove("text-gray-500")
+            star.classList.add("text-amber-400")
+        }
+
+        rating = document.getElementById("id_rating")
+        rating.value = e.target.id
+    }
+</script>
+
+{% endblock main %}

@@ -11,6 +11,17 @@ class DepositMoneyForm(forms.ModelForm):
         self.wallet = kwargs.pop('wallet')
         super().__init__(*args, **kwargs)
 
+        for field in self.fields:
+            self.fields[field].widget.attrs.update({
+                
+                'class' : (
+                    'appearance-none block w-full '
+                    'text-gray-700 border border-red-700 rounded '
+                    'py-3 px-4 leading-tight focus:outline-none '
+                    'shadow-none bg-zinc-50'
+                ) 
+            })
+
     
     def save(self, commit=True):
         transaction = super().save()

@@ -1,0 +1,51 @@
+{% load static %}
+
+<footer class="bg-[#7F1D1D] text-white dark:bg-gray-900" >
+    <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
+        <div class="md:flex md:justify-between items-center">
+          <div class="mb-6 md:mb-0">
+              <a href="{% url "home" %}" class="flex items-center">
+                  <img src="{% static 'image/footer_logo.svg' %}" class="h-8 me-3" alt="Burgero Logo" />
+              </a>
+              <p class="text-sm font-light mt-3">At Burgero, we invite you to embark on a <br>
+                journey of taste and delight. Our tables are <br>
+                more than just places.</p>
+              <p class="font-semibold text-sm mt-5">© 2024. All Rights Reserved</p>
+          </div>
+          <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+              <div>
+                  <h2 class="mb-6 font-semibold ">Quick Links</h2>
+                  <ul class="font-light">
+                      <li class="mb-3">
+                          <a href="https://flowbite.com/" class="hover:underline">About Us</a>
+                      </li>
+                      <li class="mb-3">
+                          <a href="https://tailwindcss.com/" class="hover:underline">My Account</a>
+                      </li>
+                      <li class="mb-3">
+                        <a href="https://tailwindcss.com/" class="hover:underline">Cart</a>
+                    </li>
+                    <li class="mb-3">
+                        <a href="https://tailwindcss.com/" class="hover:underline">Order History</a>
+                    </li>
+                  </ul>
+              </div>
+              <div>
+                <h2 class="mb-6 font-semibold ">Terms & Privacy</h2>
+                <ul class="font-light">
+                    <li class="mb-3">
+                        <a href="https://flowbite.com/" class="hover:underline">Trust & Safety</a>
+                    </li>
+                    <li class="mb-3">
+                        <a href="https://tailwindcss.com/" class="hover:underline">Terms & Services</a>
+                    </li>
+                    <li class="mb-3">
+                      <a href="https://tailwindcss.com/" class="hover:underline">Privacy Policy</a>
+                  </li>
+                </ul>
+            </div>
+          </div>
+      </div>
+      
+    </div>
+</footer>

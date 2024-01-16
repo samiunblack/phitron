@@ -12,6 +12,22 @@ class UserRegistrationForm(UserCreationForm):
         fields = ['full_name', 'email', 'password1', 'password2']
     
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        for field in self.fields:
+            self.fields[field].widget.attrs.update({
+                
+                'class' : (
+                    'appearance-none block w-full '
+                    'text-gray-700 border border-red-700 rounded '
+                    'py-3 px-4 leading-tight focus:outline-none '
+                    'shadow-none'
+                ) 
+            })
+
+
+
     def save(self, commit=True):
         user = super().save(commit=False)
         
@@ -37,6 +53,17 @@ class UserLoginForm(forms.Form):
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request', None)
         super(UserLoginForm, self).__init__(*args, **kwargs)
+
+        for field in self.fields:
+            self.fields[field].widget.attrs.update({
+                
+                'class' : (
+                    'appearance-none block w-full '
+                    'text-gray-700 border border-red-700 rounded '
+                    'py-3 px-4 leading-tight focus:outline-none '
+                    'shadow-none'
+                ) 
+            })
     
 
 class UserUpdateForm(forms.ModelForm):
@@ -60,6 +87,18 @@ class UserUpdateForm(forms.ModelForm):
                 self.fields['phone_no'].initial = user_account.phone_no
 
 
+        for field in self.fields:
+            self.fields[field].widget.attrs.update({
+                
+                'class' : (
+                    'appearance-none block w-full '
+                    'text-gray-700 border border-red-700 bg-zinc-50 rounded '
+                    'py-3 px-4 leading-tight focus:outline-none '
+                    'focus:bg-zinc-50 shadow-none'
+                ) 
+            })
+
+
     def save(self, commit=True):
         user_account = super().save(commit=False)
 
@@ -77,11 +116,22 @@ class UserUpdateForm(forms.ModelForm):
 class AddressCreationForm(forms.ModelForm):
     class Meta: 
         model = UserAddress
-        fields = ['phone', 'street_address', 'postal_code', 'city', 'country']
+        fields = ['street_address', 'postal_code', 'city', 'country']
 
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user')
         super(AddressCreationForm, self).__init__(*args, **kwargs)
+
+        for field in self.fields:
+            self.fields[field].widget.attrs.update({
+                
+                'class' : (
+                    'appearance-none block w-full '
+                    'text-gray-700 border border-red-700 bg-zinc-50 rounded '
+                    'py-3 px-4 leading-tight focus:outline-none '
+                    'focus:bg-zinc-50 shadow-none'
+                ) 
+            })
 
     def save(self, commit=True):
         self.instance.user = self.user

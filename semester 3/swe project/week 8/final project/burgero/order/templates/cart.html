@@ -1,13 +1,64 @@
 {% extends 'base.html' %}
 
-{% block content %}
-<div>
-    {% for item in items %}
-        <div>
-            {{item.price}}
+{% block main %}
+<div class="flex justify-center">
+    
+    <div class="w-2/3">
+        <h1 class="text-5xl text-red-950 font-bold mb-5 mt-5">Cart</h1>
+        <div class="flex gap-5">
+            <div class="w-[65%]">
+                {% for item in items %}
+                    <div class="relative w-full bg-zinc-50 h-32 border-b p-5 border-[#E3E3E3] flex items-center">
+                        <div>
+                            <img src="{{item.image}}" alt="food" class="w-[70%]">
+                        </div>
+                        <div class="grid grid-cols-5 w-full">
+                            <div class="col-span-4">
+                                <h4 class="text-lg font-bold">{{item.name}}</h4>
+                                <p class="text-sm">Quantity: {{item.quantity}}</p>
+                            </div>
+                            <div class="col-span-1">
+                                {% if item.is_discount %}
+                                    <p class="font-bold">${{item.discount_price}}</p>
+                                {% else %}
+                                    <p class="font-bold">${{item.price}}</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div>
+                            <a href="{% url "remove_from_cart" pk=item.pk %}"><i class="fa-solid fa-trash absolute bottom-3 right-3 text-[#D0D0D0] cursor-pointer"></i></a>
+                        </div>
+                    </div>
+                    
+                {% endfor %}
+            </div>
+            <div class="w-[35%]">
+                <div class="w-full bg-zinc-50 p-7">
+                    <h3 class="font-bold text-lg mb-3">Order Summary</h3>
+                    <div class="flex justify-between mb-2">
+                        <p>Subtotal ({{quantity}} items)</p>
+                        <p>${{total}}</p>
+                    </div>  
+                    <div class="flex justify-between mb-2">
+                        <p>Delivery</p>
+                        <p class="font-medium">FREE</p>
+                    </div>
+                    <div class="flex justify-between mb-5">
+                        <p>Total</p>
+                        <p>${{ total }}</p>
+                    </div>
+                    <a href="{% url "checkout" %}"><button class="w-full py-3 rounded text-white bg-red-700 font-semibold">Checkout</button></a>
+                </div>
+            </div>
         </div>
-    {% endfor %}
-    <a href="{% url "checkout" %}"><button>Checkout</button></a>
+    </div>
 </div>
 
 {% endblock %}
+
+{% for item in items %}
+<div class="">
+    
+</div>
+{% endfor %}
+<a href="{% url "checkout" %}"><button>Checkout</button></a>

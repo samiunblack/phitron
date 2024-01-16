@@ -1,0 +1,186 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
+<section class="flex justify-center mb-20 mt-20">
+    <div class="w-[85%]">
+        {% comment %} personal info {% endcomment %}
+        <div class="flex justify-center gap-4">
+            <div class="w-[345px] h-[213px] bg-rose-50 rounded-md p-7">
+                <div class="flex justify-between items-center">
+                    <h2 class="font-semibold text-lg">Personal Profile</h2>
+                    <a href="{% url "edit_profile" %}" class="text-sm text-red-700">Edit</a>
+                </div>
+                <div class="mt-7">
+                    <p>{{user.account.full_name}}</p>
+                    <p>{{user.email}}</p>
+                </div>
+            </div>
+            <div class="w-[345px] h-[213px] bg-rose-50 rounded-md p-7">
+                <div class="flex justify-between items-center">
+                    <h2 class="font-semibold text-lg">Address</h2>
+                    {% if not user.address_book %}
+                        <a href="{% url "add_address" %}" class="text-sm text-red-700">Add</a>
+                    {% endif %}
+                </div>
+                {% if user.address_book %}
+                <div class="mt-7">
+                    <p>{{user.account.full_name}}</p>
+                    <p>{{user.address_book.street_address}}</p>
+                    <p>{{user.address_book.postal_code}}, {{user.address_book.city}}, {{user.address_book.country}}</p>
+                </div>
+                {% endif %}
+            </div>
+            <div class="w-[345px] h-[213px] bg-rose-50 rounded-md p-7">
+                <div class="flex justify-between items-center">
+                    <h2 class="font-semibold text-lg">Wallet</h2>
+                    <a href="{% url "payment_history" %}" class="text-sm text-red-700">View All</a>
+                </div>
+                <div class="mt-5">
+                    <p>Available: <span class="font-medium">${{user.wallet.balance}}</span></p>
+                    <a href="{% url "deposit_money" %}"><button class="py-2.5 px-8 mt-3 bg-red-600 text-white font-semibold rounded-md text-sm">Deposit</button></a>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="flex items-center justify-between mt-20 mb-10">
+                <h1 class="text-5xl font-bold text-red-950 ">Recent Orders</h1>
+                <a class="text-sm text-red-700" href="{% url "order_history" %}">View All</a>
+            </div>
+            <div class="relative overflow-x-auto">
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col" class="pl-6 py-3 ">
+                                # Order
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Placed On
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Items
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Total
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for order in orders %}
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                <td class="pl-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    {{order.order_no}}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{order.placed_on}}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {% for item in order.items.all %}
+                                        {{item.name}}
+                                    {% endfor %}
+                                </td>
+                                <td class="px-6 py-4">
+                                    ${{order.total}}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div>
+            {% if not_reviewed %}
+            <div class="flex items-center justify-between mt-20 mb-10">
+                <h1 class="text-5xl font-bold text-red-950 ">To Review</h1>
+            </div>
+            <div>
+                {% for item in not_reviewed %}
+                    <div class="relative w-full bg-zinc-50 h-32 border-b p-5 border-[#E3E3E3] flex items-center">
+                        <div>
+                            <img src="{{item.image}}" alt="food" class="w-[70%]">
+                        </div>
+                        <div class="grid grid-cols-5 w-full">
+                            <div class="col-span-4">
+                                <h4 class="text-lg font-bold">{{item.name}}</h4>
+                                {% if item.is_discount %}
+                                    <p class="font-bold">${{item.discount_price}}</p>
+                                {% else %}
+                                    <p class="font-bold">${{item.price}}</p>
+                                {% endif %}
+                            </div>
+                            <div class="col-span-1">
+                                <a href="{% url "review" pk=item.pk %}"><p class="text-red-700 cursor-pointer">Review</p></a>
+                            </div>
+                        </div>
+                        <div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+        <div>
+            {% if reviews %}
+            <div class="flex items-center justify-between mt-20 mb-10">
+                <h1 class="text-5xl font-bold text-red-950 ">Reviews</h1>
+                <a class="text-sm text-red-700" href="{% url "reviews" %}">View All</a>
+            </div>
+            <div class="flex gap-5">
+                {% for review in reviews %}
+                    <div class="w-[392px] min-h-[296px] bg-rose-50 p-6 rounded">
+                        <div>
+                            <div class="flex gap-1  my-5 rating" id="{{review.rating}} {{review.pk}} rating">
+                                <i class="fa-solid fa-star cursor-pointer text-gray-500" id="1 {{review.pk}}"></i>
+                                <i class="fa-solid fa-star cursor-pointer text-gray-500" id="2 {{review.pk}}"></i>
+                                <i class="fa-solid fa-star cursor-pointer text-gray-500" id="3 {{review.pk}}"></i>
+                                <i class="fa-solid fa-star cursor-pointer text-gray-500" id="4 {{review.pk}}"></i>
+                                <i class="fa-solid fa-star cursor-pointer text-gray-500" id="5 {{review.pk}}"></i>
+                            </div>
+                            <div style="display: grid;
+                            grid-template-rows: auto 1fr auto;
+                            min-height: 200px;">
+                                <div style="display: flex;
+                                align-items: center;">
+                                    <div>
+                                        <h3 class="font-semibold">{{review.heading}}</h3>
+                                        <p>
+                                            {{review.review}}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="mt-auto mb-auto" style="margin-top: auto; margin-bottom: auto;">
+                                    <p><span class="font-medium">{{review.item.name}}</span>, <span class="font-light">{{review.date}}</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                            
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<script>
+    const handleRating = () => {
+        let elements = document.getElementsByClassName("rating")
+        Array.from(elements).forEach((element) => {
+            let rating = element.id
+            rating_arr = rating.split(" ")
+            rating = rating_arr[0]
+            id = rating_arr[1]
+            for(let i = 1; i <= rating; i++)
+            {   
+                elem_id = String(i) + " " + String(id)
+                console.log(elem_id)
+                const star = document.getElementById(elem_id)
+                star.classList.remove("text-gray-500")
+                star.classList.add("text-yellow-300")
+            }  
+        })
+    }
+    handleRating()
+</script>
+
+{% endblock main %}

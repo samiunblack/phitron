@@ -4,7 +4,7 @@ from food.models import Food
 
 # Create your models here.
 class Review(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     rating = models.IntegerField(default=0)
     heading = models.CharField(max_length=100, verbose_name="Title")
     review = models.TextField()

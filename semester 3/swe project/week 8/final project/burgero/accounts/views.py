@@ -13,6 +13,10 @@ from django.core.mail import EmailMultiAlternatives
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import UserAddress
+from order.models import Order
+from review.models import Review
+from food.models import Food
+from django.db.models import Subquery, OuterRef
 
 
 class UserRegistrationView(FormView):
@@ -103,3 +107,27 @@ class AddAddressView(CreateView):
         })
         
         return kwargs
+    
+
+def profile(request):
+    
+
+
+    # Subquery to get the food IDs that the user has reviewed
+    reviewed_foods_subquery = Review.objects.filter(
+        user=request.user
+    ).values('item_id')
+
+    # Query to get the foods that the user has ordered but not reviewed
+    foods_not_reviewed = Food.objects.filter(
+        orders__in=Order.objects.filter(
+            user=request.user
+        )
+    ).exclude(
+        id__in=Subquery(reviewed_foods_subquery)
+    ).distinct()
+
+    orders = Order.objects.filter(user=request.user).order_by('-placed_on')[:3]
+    reviews = Review.objects.filter(user=request.user).order_by('-date')[:3]
+
+    return render(request, 'profile.html', {'orders': orders, 'reviews': reviews, 'not_reviewed': foods_not_reviewed})
