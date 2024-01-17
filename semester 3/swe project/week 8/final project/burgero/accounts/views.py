@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, HttpResponse
+from django.shortcuts import render, redirect
 from django.views.generic import FormView, CreateView
 from .forms import UserRegistrationForm, UserLoginForm, UserUpdateForm, AddressCreationForm
 from django.urls import reverse_lazy
@@ -16,13 +16,15 @@ from .models import UserAddress
 from order.models import Order
 from review.models import Review
 from food.models import Food
-from django.db.models import Subquery, OuterRef
+from django.db.models import Subquery
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 
 class UserRegistrationView(FormView):
     template_name = 'user_registration.html'
     form_class = UserRegistrationForm
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('profile')
 
     def form_valid(self, form):
         user = form.save()
@@ -35,7 +37,8 @@ class UserRegistrationView(FormView):
         email = EmailMultiAlternatives(email_subject , '', to=[user.email])
         email.attach_alternative(email_body, "text/html")
         email.send()
-        return HttpResponse("Check your mail for confirmation")
+        messages.success(self.request, "Check your mail for confirmation.")
+        return redirect("login")
 
 
 def activate(request, uid64, token):
@@ -66,7 +69,7 @@ class UserLoginView(LoginView):
 
         if user is not None:
             login(self.request, user)
-            return redirect("home")
+            return redirect("profile")
         else:
             print("Error occured")
             return render(self.request, self.template_name, {'form': form, 'error_message': 'Invalid login credentials'})
@@ -90,15 +93,15 @@ class UserUpdateView(View, LoginRequiredMixin):
         form = UserUpdateForm(request.POST, instance=request.user.account)
         if form.is_valid():
             form.save()
-            return redirect('home')  # Redirect to the user's profile page
+            return redirect('profile')  # Redirect to the user's profile page
         return render(request, self.template_name, {'form': form})
     
 
-class AddAddressView(CreateView):
+class AddAddressView(CreateView, LoginRequiredMixin):
     model = UserAddress
     template_name = 'add_address.html'
     form_class = AddressCreationForm
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('profile')
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
@@ -109,10 +112,9 @@ class AddAddressView(CreateView):
         return kwargs
     
 
+@login_required
 def profile(request):
     
-
-
     # Subquery to get the food IDs that the user has reviewed
     reviewed_foods_subquery = Review.objects.filter(
         user=request.user

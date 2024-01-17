@@ -15,9 +15,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/js/swiffy-slider.min.js" crossorigin="anonymous" defer></script>
     <link href="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/css/swiffy-slider.min.css" rel="stylesheet" crossorigin="anonymous">
+    <link rel="shortcut icon" href="https://em-content.zobj.net/source/twitter/376/french-fries_1f35f.png" type="image/x-icon">
     <title>Burgero</title>
 </head>
 <body>
+    {% if messages %}
+    {% for message in messages %}
+        {% include 'message.html' with message=message %}
+    {% endfor %}
+    {% endif %}
     {% block body %}
     <main style="min-height: 100vh;
     display: flex;

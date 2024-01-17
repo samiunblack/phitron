@@ -4,6 +4,7 @@
     <section class="flex justify-center">
         <div class="w-[85%]">
             <h1 class="text-5xl font-bold text-red-950 mt-10 mb-10">Orders</h1>
+            {% if object_list %}
             <div class="relative overflow-x-auto">
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -44,6 +45,11 @@
                     </tbody>
                 </table>
             </div>
+            {% else %}
+            <div>
+                <h3 class="font-xl font-semibold">No order has been placed yet.</h3>
+            </div>
+            {% endif %}
         </div>
     </section>
 {% endblock %}

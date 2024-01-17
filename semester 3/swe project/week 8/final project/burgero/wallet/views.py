@@ -2,10 +2,11 @@ from django.views.generic import CreateView, ListView
 from .models import Transaction
 from django.urls import reverse_lazy
 from .forms import DepositMoneyForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-class DepositMoneyView(CreateView):
+class DepositMoneyView(CreateView, LoginRequiredMixin):
     model = Transaction
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('profile')
     template_name = 'deposit_money.html'
     form_class = DepositMoneyForm
 
@@ -23,7 +24,7 @@ class DepositMoneyView(CreateView):
         return super().form_valid(form)
     
 
-class PaymentReportView(ListView):
+class PaymentReportView(ListView, LoginRequiredMixin):
     template_name = 'payments_report.html'
     model = Transaction
     

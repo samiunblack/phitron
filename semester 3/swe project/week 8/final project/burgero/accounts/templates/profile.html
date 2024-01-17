@@ -14,6 +14,7 @@
                 <div class="mt-7">
                     <p>{{user.account.full_name}}</p>
                     <p>{{user.email}}</p>
+                    <p>{{user.account.phone_no}}</p>
                 </div>
             </div>
             <div class="w-[345px] h-[213px] bg-rose-50 rounded-md p-7">
@@ -29,6 +30,8 @@
                     <p>{{user.address_book.street_address}}</p>
                     <p>{{user.address_book.postal_code}}, {{user.address_book.city}}, {{user.address_book.country}}</p>
                 </div>
+                {% else %}
+                <p class="mt-5">Please add your address.</p>
                 {% endif %}
             </div>
             <div class="w-[345px] h-[213px] bg-rose-50 rounded-md p-7">
@@ -42,11 +45,13 @@
                 </div>
             </div>
         </div>
+        {% comment %} recent orders {% endcomment %}
         <div>
             <div class="flex items-center justify-between mt-20 mb-10">
                 <h1 class="text-5xl font-bold text-red-950 ">Recent Orders</h1>
                 <a class="text-sm text-red-700" href="{% url "order_history" %}">View All</a>
             </div>
+            {% if orders %}
             <div class="relative overflow-x-auto">
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -87,17 +92,23 @@
                     </tbody>
                 </table>
             </div>
+            {% else %}
+            <div>
+                <h3 class="text-xl font-semibold">No Order has been placed.</h3>
+            </div>
+            {% endif %}
         </div>
+        {% comment %} to review {% endcomment %}
         <div>
-            {% if not_reviewed %}
             <div class="flex items-center justify-between mt-20 mb-10">
                 <h1 class="text-5xl font-bold text-red-950 ">To Review</h1>
             </div>
-            <div>
+            {% if not_reviewed %}
+            <div class="grid grid-cols-2 gap-5">
                 {% for item in not_reviewed %}
                     <div class="relative w-full bg-zinc-50 h-32 border-b p-5 border-[#E3E3E3] flex items-center">
-                        <div>
-                            <img src="{{item.image}}" alt="food" class="w-[70%]">
+                        <div class="w-[100px] p-2 mr-5">
+                            <img src="{{item.image}}" alt="food" class="object-contain">
                         </div>
                         <div class="grid grid-cols-5 w-full">
                             <div class="col-span-4">
@@ -117,14 +128,19 @@
                     </div>
                 {% endfor %}
             </div>
+            {% else %}
+            <div>
+                <h3 class="text-xl font-semibold">No Item to Review.</h3>
+            </div>
             {% endif %}
         </div>
+        {% comment %} reviews {% endcomment %}
         <div>
-            {% if reviews %}
             <div class="flex items-center justify-between mt-20 mb-10">
                 <h1 class="text-5xl font-bold text-red-950 ">Reviews</h1>
                 <a class="text-sm text-red-700" href="{% url "reviews" %}">View All</a>
             </div>
+            {% if reviews %}
             <div class="flex gap-5">
                 {% for review in reviews %}
                     <div class="w-[392px] min-h-[296px] bg-rose-50 p-6 rounded">
@@ -157,6 +173,10 @@
                             
                 {% endfor %}
             </div>
+            {% else %}
+                <div>
+                    <h3 class="text-xl font-semibold">No Item Reviewed Yet.</h3>
+                </div>
             {% endif %}
         </div>
     </div>

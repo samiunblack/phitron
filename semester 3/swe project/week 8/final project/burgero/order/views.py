@@ -2,26 +2,30 @@ from django.shortcuts import render, redirect
 from .models import Order
 from wallet.models import Transaction
 from django.views.generic import ListView
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
+@login_required
 def cart(request):
     quantity = 0
     total = 0
     for item in request.user.account.cart.all():
-        quantity += item.quantity
+        quantity += 1
         if item.is_discount is False:
-            total += item.price * item.quantity
+            total += item.price
         else:
-            total += item.discount_price * item.quantity
+            total += item.discount_price
     return render(request, 'cart.html', {'items': request.user.account.cart.all(), 'quantity': quantity, 'total': total})
 
 
+@login_required
 def place_order(request):
     total = 0
     for item in request.user.account.cart.all():
         if item.is_discount is False:
-            total += item.price * item.quantity
+            total += item.price
         else:
-            total += item.discount_price * item.quantity
+            total += item.discount_price
     
     
     if(total < request.user.wallet.balance):
@@ -45,10 +49,10 @@ def place_order(request):
     else:
         return redirect("deposit_money")
 
-    return redirect("home")
+    return redirect("order_history")
 
 
-class OrderHistoryView(ListView):
+class OrderHistoryView(ListView, LoginRequiredMixin):
     template_name = 'order_report.html'
     model = Order
     

@@ -3,7 +3,8 @@
 {% block main %}
     <section class="flex justify-center mb-20">
         <div class="w-[85%]">
-            <h1 class="text-5xl font-bold text-red-950 mt-10 mb-10">Orders</h1>
+            <h1 class="text-5xl font-bold text-red-950 mt-10 mb-10">Payments</h1>
+            {% if object_list %}
             <div class="relative overflow-x-auto">
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -32,7 +33,11 @@
                                     {{payment.date}}
                                 </td>
                                 <td class="px-6 py-4">
-                                    {{payment.transaction_type}}
+                                    {% if payment.transaction_type == 'Deposit' %}
+                                    <span class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">{{payment.transaction_type}}</span>
+                                    {% else %}
+                                    <span class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">{{payment.transaction_type}}</span>
+                                    {% endif %}
                                 </td>
                                 <td class="px-6 py-4">
                                     ${{payment.amount}}
@@ -50,6 +55,11 @@
                     </tfoot>
                 </table>
             </div>
+            {% else %}
+            <div>
+                <h3 class="text-xl font-semibold">No payment has been made yet.</h3>
+            </div>
+            {% endif %}
         </div>
     </section>
 {% endblock %}

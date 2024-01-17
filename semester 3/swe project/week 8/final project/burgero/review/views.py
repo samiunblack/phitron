@@ -5,13 +5,14 @@ from .models import Review
 from .forms import ReviewForm
 from django.urls import reverse_lazy
 from food.models import Food
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-class AddReviewView(CreateView):
+class AddReviewView(CreateView, LoginRequiredMixin):
     model = Review
     form_class = ReviewForm
     template_name = 'add_review.html'
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('reviews')
     pk_url_kwarg = 'pk'
 
     def get_form_kwargs(self):
@@ -35,7 +36,7 @@ class AddReviewView(CreateView):
         return context
     
 
-class ReviewListView(ListView):
+class ReviewListView(ListView, LoginRequiredMixin):
     template_name = 'reviews.html'
     model = Review
     

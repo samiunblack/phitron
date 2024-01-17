@@ -1,6 +1,16 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block main %}
+<style>
+    .food-item:nth-child(1) {
+        background-color: #dc2626;
+        color: white;
+    }
+    .food-item:nth-child(1) button {
+        background-color: white;
+        color: #dc2626;
+    }
+</style>
     <section class="w-full">
         {% comment %} header {% endcomment %}
         <div class="flex justify-between items-center mt-5">
@@ -8,7 +18,7 @@
                 <h1 class="text-red-950 mb-5 text-4xl font-bold leading-normal">Enjoy Your <br><span class="text-red-700">Delicious</span> Food</h1>
                 <p>Delivering your food to any corner of the city within <br>
                     30 minutes. Enjoy delicious foods anywhere anytime</p>
-                <button class="text-white font-semibold h-[50px] px-10 mt-8 bg-red-700 rounded-md">Order Now</button>
+                <a href="{% url "login" %}"><button class="text-white font-semibold h-[50px] px-10 mt-8 bg-red-700 rounded-md">Get Started</button></a>
             </div>
             <div>
                 <img src="{% static 'image/hero.png' %}" alt="">
@@ -19,28 +29,44 @@
             <div class="mb-20">
                 <div class="flex justify-between items-center mt-20 mb-10">
                     <h1 class="text-3xl font-bold text-red-950"><span class="text-red-700">Popular</span> Items</h1>
-                    <button class="py-2 px-8 rounded-md font-medium text-white bg-red-600">Filter</button>
+                    <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-7 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">Filter
+                        </button>
+                        
+                        <!-- Dropdown menu -->
+                        <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                            <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+                            <li>
+                                <a href="{% url "home" %}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">All</a>
+                            </li>
+                            {% for category in categories %}
+                            <li>
+                                <a href="{% url "filter" category=category.name %}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{category.name}}</a>
+                            </li>
+                            {% endfor %}
+                            </ul>
+                        </div>
+    
                 </div>
                 <div class="grid grid-cols-4 gap-5">
                     {% for food in foods %}
-                        <div class="bg-red-600 text-white h-[420px] rounded-md p-7">
-                            <div class="flex justify-center mt-2 mb-7">
-                                <img src="{{food.image}}" alt="">
+                        <div class="bg-rose-50 text-black h-[420px] rounded-md p-7 food-item">
+                            <div class="grid justify-center h-[150px] items-center mb-4">
+                                <img src="{{food.image}}" alt="" class="max-h-[150px] object-contain">
                             </div>
                             <div>
                                 <h3 class="font-semibold text-xl">{{food.name}}</h3>
-                                <div class="flex rating text-xs items-center" id="{{food.average_rating}} {{food.pk}} rating">
-                                    <i class="fa-solid fa-star cursor-pointer text-gray-500" id="1 {{food.pk}}"></i>
-                                    <i class="fa-solid fa-star cursor-pointer text-gray-500" id="2 {{food.pk}}"></i>
-                                    <i class="fa-solid fa-star cursor-pointer text-gray-500" id="3 {{food.pk}}"></i>
-                                    <i class="fa-solid fa-star cursor-pointer text-gray-500" id="4 {{food.pk}}"></i>
-                                    <i class="fa-solid fa-star cursor-pointer text-gray-500" id="5 {{food.pk}}"></i>
+                                <div class="flex rating-food text-xs items-center" id="{{food.average_rating}} {{food.pk}} rating">
+                                    <i class="fa-solid fa-star cursor-pointer text-gray-500" id="1 {{food.pk}} food"></i>
+                                    <i class="fa-solid fa-star cursor-pointer text-gray-500" id="2 {{food.pk}} food"></i>
+                                    <i class="fa-solid fa-star cursor-pointer text-gray-500" id="3 {{food.pk}} food"></i>
+                                    <i class="fa-solid fa-star cursor-pointer text-gray-500" id="4 {{food.pk}} food"></i>
+                                    <i class="fa-solid fa-star cursor-pointer text-gray-500" id="5 {{food.pk}} food"></i>
                                     <span class="ml-1">({{food.review.count}})</span>
                                 </div>
                                 <p class="mt-7 text-sm">{{food.description}}</p>
                                 <div class="flex justify-between items-center mt-10">
                                     <h4 class="font-bold text-xl">${{food.price}}</h4>
-                                    <a href="{% url "add_to_cart" pk=food.pk %}"><button class="bg-white text-red-700 px-5 py-2 rounded-md font-medium">Add to Cart</button></a>
+                                    <a href="{% url "add_to_cart" pk=food.pk %}"><button class="bg-red-600 text-white px-5 py-2 rounded-md font-medium">Add to Cart</button></a>
                                 </div>
                             </div>
                         </div>
@@ -126,12 +152,12 @@
                             <li>
                                 <div class="w-[392px] min-h-[296px] bg-rose-50 p-6 rounded">
                                     <div>
-                                        <div class="flex gap-1  my-5 rating" id="{{review.rating}} {{review.pk}} rating">
-                                            <i class="fa-solid fa-star cursor-pointer text-gray-500" id="1 {{review.pk}}"></i>
-                                            <i class="fa-solid fa-star cursor-pointer text-gray-500" id="2 {{review.pk}}"></i>
-                                            <i class="fa-solid fa-star cursor-pointer text-gray-500" id="3 {{review.pk}}"></i>
-                                            <i class="fa-solid fa-star cursor-pointer text-gray-500" id="4 {{review.pk}}"></i>
-                                            <i class="fa-solid fa-star cursor-pointer text-gray-500" id="5 {{review.pk}}"></i>
+                                        <div class="flex gap-1  my-5 rating-review" id="{{review.rating}} {{review.pk}} rating">
+                                            <i class="fa-solid fa-star cursor-pointer text-gray-500" id="1 {{review.pk}} review"></i>
+                                            <i class="fa-solid fa-star cursor-pointer text-gray-500" id="2 {{review.pk}} review"></i>
+                                            <i class="fa-solid fa-star cursor-pointer text-gray-500" id="3 {{review.pk}} review"></i>
+                                            <i class="fa-solid fa-star cursor-pointer text-gray-500" id="4 {{review.pk}} review"></i>
+                                            <i class="fa-solid fa-star cursor-pointer text-gray-500" id="5 {{review.pk}} review"></i>
                                         </div>
                                         <div style="display: grid;
                                         grid-template-rows: auto 1fr auto;
@@ -165,7 +191,7 @@
 
     <script>
         const handleRating = () => {
-            let elements = document.getElementsByClassName("rating")
+            let elements = document.getElementsByClassName("rating-food")
             Array.from(elements).forEach((element) => {
                 let rating = element.id
                 rating_arr = rating.split(" ")
@@ -173,7 +199,26 @@
                 id = rating_arr[1]
                 for(let i = 1; i <= rating; i++)
                 {   
-                    elem_id = String(i) + " " + String(id)
+                    elem_id = String(i) + " " + String(id) + " food"
+                    console.log(elem_id)
+                    const star = document.getElementById(elem_id)
+                    star.classList.remove("text-gray-500")
+                    star.classList.add("text-yellow-300")
+                }  
+            })
+        }
+
+        const handleReviewRating = () => {
+            let elements = document.getElementsByClassName("rating-review")
+            console.log(elements)
+            Array.from(elements).forEach((element) => {
+                let rating = element.id
+                rating_arr = rating.split(" ")
+                rating = rating_arr[0]
+                id = rating_arr[1]
+                for(let i = 1; i <= rating; i++)
+                {   
+                    elem_id = String(i) + " " + String(id) + " review"
                     console.log(elem_id)
                     const star = document.getElementById(elem_id)
                     star.classList.remove("text-gray-500")
@@ -186,12 +231,9 @@
             let elements = document.getElementsByClassName("discount-description")
 
             Array.from(elements).forEach((element) => {
-                console.log(element)
-                console.log(element.parentNode)
 
                 let description = element.innerText
                 let points = description.split("\n")
-                console.log(points)
                 for(point of points)
                 {
                     const p = document.createElement("p")
@@ -205,5 +247,6 @@
         
         handleDiscountFoodDescription()
         handleRating()
+        handleReviewRating()
     </script>
 {% endblock %}

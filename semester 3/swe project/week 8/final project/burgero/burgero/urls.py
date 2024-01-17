@@ -16,14 +16,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from core.views import home
+from core.views import home, category_filter
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name="home"),
+    path('filter/<str:category>/', category_filter, name="filter"),
     path('accounts/', include("accounts.urls")),
     path('wallet/', include("wallet.urls")),
     path('', include("food.urls")),
     path('', include("order.urls")),
     path('', include("review.urls")),
+    
 ]

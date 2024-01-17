@@ -3,6 +3,9 @@ from django.db import models
 class Category(models.Model):
     name = models.CharField(max_length=255)
 
+    def __str__(self) -> str:
+        return self.name
+
 
 class Food(models.Model):
     name = models.CharField(max_length=100)
@@ -12,7 +15,6 @@ class Food(models.Model):
     is_discount = models.BooleanField(blank=True, default=False)
     discount_price = models.DecimalField(max_digits=12, decimal_places=2, blank=True, null=True)
     category = models.ManyToManyField(Category)
-    quantity = models.IntegerField(blank=True, default=0, null=True)
 
     def average_rating(self):
         ratings = self.review.all()

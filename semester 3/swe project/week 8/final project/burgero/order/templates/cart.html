@@ -6,16 +6,16 @@
     <div class="w-2/3">
         <h1 class="text-5xl text-red-950 font-bold mb-5 mt-5">Cart</h1>
         <div class="flex gap-5">
+            {% if items %}
             <div class="w-[65%]">
                 {% for item in items %}
                     <div class="relative w-full bg-zinc-50 h-32 border-b p-5 border-[#E3E3E3] flex items-center">
-                        <div>
-                            <img src="{{item.image}}" alt="food" class="w-[70%]">
+                        <div class="w-[100px] mr-5 p-2">
+                            <img src="{{item.image}}" alt="food" class="object-contain">
                         </div>
                         <div class="grid grid-cols-5 w-full">
                             <div class="col-span-4">
                                 <h4 class="text-lg font-bold">{{item.name}}</h4>
-                                <p class="text-sm">Quantity: {{item.quantity}}</p>
                             </div>
                             <div class="col-span-1">
                                 {% if item.is_discount %}
@@ -32,6 +32,11 @@
                     
                 {% endfor %}
             </div>
+            {% else %}
+            <div class="w-[65%]">
+                <h3 class="text-xl font-semibold">Nothing in cart.</h3>
+            </div>
+            {% endif %}
             <div class="w-[35%]">
                 <div class="w-full bg-zinc-50 p-7">
                     <h3 class="font-bold text-lg mb-3">Order Summary</h3>
