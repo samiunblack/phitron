@@ -1360,10 +1360,6 @@ input:checked + .toggle-bg {
   height: 329px;
 }
 
-.h-\[420px\] {
-  height: 420px;
-}
-
 .h-\[50px\] {
   height: 50px;
 }
@@ -1374,6 +1370,10 @@ input:checked + .toggle-bg {
 
 .h-screen {
   height: 100vh;
+}
+
+.h-\[420px\] {
+  height: 420px;
 }
 
 .max-h-\[150px\] {
@@ -1484,6 +1484,18 @@ input:checked + .toggle-bg {
   width: 100%;
 }
 
+.w-\[\] {
+  width: ;
+}
+
+.w-\[300px\] {
+  width: 300px;
+}
+
+.w-\[400px\] {
+  width: 400px;
+}
+
 .max-w-screen-xl {
   max-width: 1280px;
 }
@@ -1502,6 +1514,14 @@ input:checked + .toggle-bg {
 
 .flex-shrink-0 {
   flex-shrink: 0;
+}
+
+.shrink-0 {
+  flex-shrink: 0;
+}
+
+.grow-0 {
+  flex-grow: 0;
 }
 
 .border-collapse {
@@ -1594,10 +1614,6 @@ input:checked + .toggle-bg {
 
 .flex-wrap {
   flex-wrap: wrap;
-}
-
-.content-start {
-  align-content: flex-start;
 }
 
 .items-start {
@@ -2541,6 +2557,10 @@ input:checked + .toggle-bg {
     width: auto;
   }
 
+  .md\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
   .md\:flex-row {
     flex-direction: row;
   }
@@ -2607,6 +2627,10 @@ input:checked + .toggle-bg {
 }
 
 @media (min-width: 1024px) {
+  .lg\:grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
   .lg\:py-8 {
     padding-top: 2rem;
     padding-bottom: 2rem;

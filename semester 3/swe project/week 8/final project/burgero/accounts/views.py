@@ -14,7 +14,7 @@ from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import UserAddress
 from order.models import Order
-from review.models import Review
+from review.models import ReviewModel
 from food.models import Food
 from django.db.models import Subquery
 from django.contrib import messages
@@ -30,7 +30,7 @@ class UserRegistrationView(FormView):
         user = form.save()
         token = default_token_generator.make_token(user)
         uid = urlsafe_base64_encode(force_bytes(user.pk))
-        confirm_link = f"http://127.0.0.1:8000/accounts/active/{uid}/{token}"
+        confirm_link = f"https://burgero.onrender.com/accounts/active/{uid}/{token}"
         email_subject = "Confirm Your Email"
         email_body = render_to_string('confirm_email.html', {'confirm_link' : confirm_link})
         
@@ -39,6 +39,13 @@ class UserRegistrationView(FormView):
         email.send()
         messages.success(self.request, "Check your mail for confirmation.")
         return redirect("login")
+    
+    def form_invalid(self, form):
+        error_dict = form.errors.as_data()
+        if error_dict:
+            error_message = error_dict.popitem()[1][0].message
+            messages.error(self.request, error_message)
+        return super().form_invalid(form)
 
 
 def activate(request, uid64, token):
@@ -71,7 +78,6 @@ class UserLoginView(LoginView):
             login(self.request, user)
             return redirect("profile")
         else:
-            print("Error occured")
             return render(self.request, self.template_name, {'form': form, 'error_message': 'Invalid login credentials'})
     
 
@@ -116,7 +122,7 @@ class AddAddressView(CreateView, LoginRequiredMixin):
 def profile(request):
     
     # Subquery to get the food IDs that the user has reviewed
-    reviewed_foods_subquery = Review.objects.filter(
+    reviewed_foods_subquery = ReviewModel.objects.filter(
         user=request.user
     ).values('item_id')
 
@@ -130,6 +136,6 @@ def profile(request):
     ).distinct()
 
     orders = Order.objects.filter(user=request.user).order_by('-placed_on')[:3]
-    reviews = Review.objects.filter(user=request.user).order_by('-date')[:3]
+    reviews = ReviewModel.objects.filter(user=request.user).order_by('-date')[:3]
 
     return render(request, 'profile.html', {'orders': orders, 'reviews': reviews, 'not_reviewed': foods_not_reviewed})

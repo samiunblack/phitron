@@ -229,6 +229,15 @@
     </ul>
 </details>
 
+<details>
+<summary>Week 3: Final Week</summary>
+    <ul>
+        <li>Foreign Key and Solve Problems</li>
+        <li>ERD</li>
+        <li>Python with SQL</li>
+    </ul>
+</details>
+
 
 ## Coruse 7: XPSC
 ### [All Problems List](https://github.com/samiunblack/phitron/tree/main/xpsc)
@@ -266,6 +275,15 @@
     <li>Forms in Django</li>
     <li>Models and ModelForm in Django</li>
     <li>Simple Blog Project Part I</li>
+</ul>
+</details>
+<details>
+<details>
+<summary>Week 5: Authentication and Authorization</summary>
+<ul>
+    <li>Authentication and authorization</li>
+    <li>Simple Blog Project Part II</li>
+    <li>Working With Class Based View</li>
 </ul>
 </details>
 <details>

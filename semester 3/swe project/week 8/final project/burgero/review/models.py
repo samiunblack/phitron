@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from food.models import Food
 
 # Create your models here.
-class Review(models.Model):
+class ReviewModel(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     rating = models.IntegerField(default=0)
     heading = models.CharField(max_length=100, verbose_name="Title")

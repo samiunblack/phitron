@@ -10,7 +10,7 @@ class User(ABC):
     @abstractmethod
     def create_account():
         raise NotImplementedError
-    
+
 
 class Customer(User):
     def __init__(self, name, email, account_type):
@@ -112,7 +112,8 @@ class Admin(User):
     
     def delete_user_account(self, account_number):
         index = 0
-        
+
+
         for i, user in enumerate(self.bank.users):
             if user.account_number == account_number:
                 index = i

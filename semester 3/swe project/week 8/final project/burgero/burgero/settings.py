@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from pathlib import Path
 import os
 import environ
+import dj_database_url
+
 env = environ.Env()
 environ.Env.read_env()
 
@@ -29,7 +31,7 @@ SECRET_KEY = 'django-insecure-e-51rbq4$2pn1@*cgk4gx&=e-a1u_o$bxw*)y$l%w#pq33dy0m
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*", "burgero.onrender.com"]
 
 
 # Application definition
@@ -42,14 +44,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core',
-    'accounts',
     'food',
+    'accounts',
     'order',
     'review',
     'wallet',
     'compressor',
 ]
-
 
 COMPRESS_ROOT = BASE_DIR / 'static'
 
@@ -65,7 +66,6 @@ AUTHENTICATION_BACKENDS = ['accounts.backends.EmailBackend', 'django.contrib.aut
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -99,11 +99,15 @@ WSGI_APPLICATION = 'burgero.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(
+        # Feel free to alter this value to suit your needs.
+        default="postgres://burgero_ljnc_user:lnGdoL2fRij6qoU6H8NrTrIayfIfPyce@dpg-cmjsq0mn7f5s73ceula0-a.oregon-postgres.render.com/burgero_ljnc",
+        conn_max_age=600
+    )
 }
+
+
+CSRF_TRUSTED_ORIGINS = ['https://burgero.onrender.com','https://*.127.0.0.1']
 
 
 # Password validation
@@ -143,10 +147,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_DIRS = [
-    BASE_DIR / 'static'
-]
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATICFILES_DIRS = [
+#     BASE_DIR / 'static'
+# ]
 
 
 # Default primary key field type

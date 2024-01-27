@@ -1,7 +1,7 @@
 from typing import Any
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import CreateView, ListView
-from .models import Review
+from .models import ReviewModel
 from .forms import ReviewForm
 from django.urls import reverse_lazy
 from food.models import Food
@@ -9,7 +9,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class AddReviewView(CreateView, LoginRequiredMixin):
-    model = Review
+    model = ReviewModel
     form_class = ReviewForm
     template_name = 'add_review.html'
     success_url = reverse_lazy('reviews')
@@ -38,7 +38,7 @@ class AddReviewView(CreateView, LoginRequiredMixin):
 
 class ReviewListView(ListView, LoginRequiredMixin):
     template_name = 'reviews.html'
-    model = Review
+    model = ReviewModel
     
     def get_queryset(self):
         queryset = super().get_queryset().filter(
