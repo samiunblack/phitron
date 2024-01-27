@@ -278,7 +278,6 @@
 </ul>
 </details>
 <details>
-<details>
 <summary>Week 5: Authentication and Authorization</summary>
 <ul>
     <li>Authentication and authorization</li>
@@ -303,7 +302,7 @@
 </ul>
 </details>
 <details>
-<summary>Week 6: Hospital Management Backend</summary>
+<summary>Week 8: Hospital Management Backend</summary>
 <ul>
     <li>Creating models</li>
     <li>Creating serializers</li>
